@@ -2,7 +2,7 @@
 
 The whole setup is on MacOS v10.15.5 (19F101)
 
-###Phase 1
+### Phase 1
 
 Data flow as follows:
 ```
@@ -83,7 +83,7 @@ Issues:
 
 
 
-###Phase 2
+### Phase 2
 
 Data flow as follows:
 ```
