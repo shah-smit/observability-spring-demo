@@ -1,0 +1,160 @@
+Last login: Sat Jun 27 17:58:02 on ttys000
+You have new mail.
+-bash: installation: No such file or directory
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+(base) Smits-MacBook-Pro:~ Smit$ cd /Users/Smit/Documents/Dev/ELK/elasticsearch-7.8.0 
+(base) Smits-MacBook-Pro:elasticsearch-7.8.0 Smit$ bin/elasticsearch
+Java HotSpot(TM) 64-Bit Server VM warning: Option UseConcMarkSweepGC was deprecated in version 9.0 and will likely be removed in a future release.
+[2020-06-27T18:02:12,505][INFO ][o.e.n.Node               ] [Smits-MacBook-Pro.local] version[7.8.0], pid[34944], build[default/tar/757314695644ea9a1dc2fecd26d1a43856725e65/2020-06-14T19:35:50.234439Z], OS[Mac OS X/10.15.5/x86_64], JVM[Oracle Corporation/Java HotSpot(TM) 64-Bit Server VM/11.0.2/11.0.2+9-LTS]
+[2020-06-27T18:02:12,508][INFO ][o.e.n.Node               ] [Smits-MacBook-Pro.local] JVM home [/Library/Java/JavaVirtualMachines/jdk-11.0.2.jdk/Contents/Home]
+[2020-06-27T18:02:12,509][INFO ][o.e.n.Node               ] [Smits-MacBook-Pro.local] JVM arguments [-Xshare:auto, -Des.networkaddress.cache.ttl=60, -Des.networkaddress.cache.negative.ttl=10, -XX:+AlwaysPreTouch, -Xss1m, -Djava.awt.headless=true, -Dfile.encoding=UTF-8, -Djna.nosys=true, -XX:-OmitStackTraceInFastThrow, -Dio.netty.noUnsafe=true, -Dio.netty.noKeySetOptimization=true, -Dio.netty.recycler.maxCapacityPerThread=0, -Dio.netty.allocator.numDirectArenas=0, -Dlog4j.shutdownHookEnabled=false, -Dlog4j2.disable.jmx=true, -Djava.locale.providers=SPI,COMPAT, -Xms1g, -Xmx1g, -XX:+UseConcMarkSweepGC, -XX:CMSInitiatingOccupancyFraction=75, -XX:+UseCMSInitiatingOccupancyOnly, -Djava.io.tmpdir=/var/folders/db/2q6m7b057rd4hdkkwc4hjtw80000gn/T/elasticsearch-14746086357980380155, -XX:+HeapDumpOnOutOfMemoryError, -XX:HeapDumpPath=data, -XX:ErrorFile=logs/hs_err_pid%p.log, -Xlog:gc*,gc+age=trace,safepoint:file=logs/gc.log:utctime,pid,tags:filecount=32,filesize=64m, -XX:MaxDirectMemorySize=536870912, -Des.path.home=/Users/Smit/Documents/Dev/ELK/elasticsearch-7.8.0, -Des.path.conf=/Users/Smit/Documents/Dev/ELK/elasticsearch-7.8.0/config, -Des.distribution.flavor=default, -Des.distribution.type=tar, -Des.bundled_jdk=true]
+[2020-06-27T18:02:14,770][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [aggs-matrix-stats]
+[2020-06-27T18:02:14,771][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [analysis-common]
+[2020-06-27T18:02:14,771][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [constant-keyword]
+[2020-06-27T18:02:14,771][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [flattened]
+[2020-06-27T18:02:14,772][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [frozen-indices]
+[2020-06-27T18:02:14,772][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [ingest-common]
+[2020-06-27T18:02:14,772][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [ingest-geoip]
+[2020-06-27T18:02:14,773][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [ingest-user-agent]
+[2020-06-27T18:02:14,773][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [kibana]
+[2020-06-27T18:02:14,773][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [lang-expression]
+[2020-06-27T18:02:14,773][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [lang-mustache]
+[2020-06-27T18:02:14,774][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [lang-painless]
+[2020-06-27T18:02:14,774][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [mapper-extras]
+[2020-06-27T18:02:14,774][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [parent-join]
+[2020-06-27T18:02:14,774][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [percolator]
+[2020-06-27T18:02:14,774][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [rank-eval]
+[2020-06-27T18:02:14,775][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [reindex]
+[2020-06-27T18:02:14,775][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [repository-url]
+[2020-06-27T18:02:14,775][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [search-business-rules]
+[2020-06-27T18:02:14,775][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [searchable-snapshots]
+[2020-06-27T18:02:14,776][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [spatial]
+[2020-06-27T18:02:14,776][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [tasks]
+[2020-06-27T18:02:14,776][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [transform]
+[2020-06-27T18:02:14,777][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [transport-netty4]
+[2020-06-27T18:02:14,777][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [vectors]
+[2020-06-27T18:02:14,777][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [x-pack-analytics]
+[2020-06-27T18:02:14,778][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [x-pack-async-search]
+[2020-06-27T18:02:14,778][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [x-pack-autoscaling]
+[2020-06-27T18:02:14,778][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [x-pack-ccr]
+[2020-06-27T18:02:14,778][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [x-pack-core]
+[2020-06-27T18:02:14,779][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [x-pack-deprecation]
+[2020-06-27T18:02:14,779][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [x-pack-enrich]
+[2020-06-27T18:02:14,779][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [x-pack-eql]
+[2020-06-27T18:02:14,779][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [x-pack-graph]
+[2020-06-27T18:02:14,779][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [x-pack-identity-provider]
+[2020-06-27T18:02:14,780][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [x-pack-ilm]
+[2020-06-27T18:02:14,780][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [x-pack-logstash]
+[2020-06-27T18:02:14,780][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [x-pack-ml]
+[2020-06-27T18:02:14,780][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [x-pack-monitoring]
+[2020-06-27T18:02:14,780][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [x-pack-ql]
+[2020-06-27T18:02:14,781][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [x-pack-rollup]
+[2020-06-27T18:02:14,781][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [x-pack-security]
+[2020-06-27T18:02:14,781][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [x-pack-sql]
+[2020-06-27T18:02:14,781][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [x-pack-voting-only-node]
+[2020-06-27T18:02:14,782][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] loaded module [x-pack-watcher]
+[2020-06-27T18:02:14,782][INFO ][o.e.p.PluginsService     ] [Smits-MacBook-Pro.local] no plugins loaded
+[2020-06-27T18:02:14,825][INFO ][o.e.e.NodeEnvironment    ] [Smits-MacBook-Pro.local] using [1] data paths, mounts [[/ (/dev/disk1s5)]], net usable_space [64.4gb], net total_space [465.7gb], types [apfs]
+[2020-06-27T18:02:14,826][INFO ][o.e.e.NodeEnvironment    ] [Smits-MacBook-Pro.local] heap size [989.8mb], compressed ordinary object pointers [true]
+[2020-06-27T18:02:14,935][INFO ][o.e.n.Node               ] [Smits-MacBook-Pro.local] node name [Smits-MacBook-Pro.local], node ID [htq86gkZQtmYAAlMVs4AEg], cluster name [elasticsearch]
+[2020-06-27T18:02:18,516][INFO ][o.e.x.s.a.s.FileRolesStore] [Smits-MacBook-Pro.local] parsed [0] roles from file [/Users/Smit/Documents/Dev/ELK/elasticsearch-7.8.0/config/roles.yml]
+[2020-06-27T18:02:19,162][INFO ][o.e.x.m.p.l.CppLogMessageHandler] [Smits-MacBook-Pro.local] [controller/34981] [Main.cc@110] controller (64 bit): Version 7.8.0 (Build 58ff6912e20047) Copyright (c) 2020 Elasticsearch BV
+[2020-06-27T18:02:19,989][INFO ][o.e.d.DiscoveryModule    ] [Smits-MacBook-Pro.local] using discovery type [zen] and seed hosts providers [settings]
+[2020-06-27T18:02:20,846][INFO ][o.e.n.Node               ] [Smits-MacBook-Pro.local] initialized
+[2020-06-27T18:02:20,847][INFO ][o.e.n.Node               ] [Smits-MacBook-Pro.local] starting ...
+[2020-06-27T18:02:21,033][INFO ][o.e.t.TransportService   ] [Smits-MacBook-Pro.local] publish_address {127.0.0.1:9300}, bound_addresses {[::1]:9300}, {127.0.0.1:9300}
+[2020-06-27T18:02:21,391][WARN ][o.e.b.BootstrapChecks    ] [Smits-MacBook-Pro.local] the default discovery settings are unsuitable for production use; at least one of [discovery.seed_hosts, discovery.seed_providers, cluster.initial_master_nodes] must be configured
+[2020-06-27T18:02:21,393][INFO ][o.e.c.c.Coordinator      ] [Smits-MacBook-Pro.local] cluster UUID [C21i1PkYQ5mPQ18SqaYC-A]
+[2020-06-27T18:02:21,402][INFO ][o.e.c.c.ClusterBootstrapService] [Smits-MacBook-Pro.local] no discovery configuration found, will perform best-effort cluster bootstrapping after [3s] unless existing master is discovered
+[2020-06-27T18:02:21,502][INFO ][o.e.c.s.MasterService    ] [Smits-MacBook-Pro.local] elected-as-master ([1] nodes joined)[{Smits-MacBook-Pro.local}{htq86gkZQtmYAAlMVs4AEg}{f7KVxlWpQvqzbqOIXN3dDw}{127.0.0.1}{127.0.0.1:9300}{dilmrt}{ml.machine_memory=17179869184, xpack.installed=true, transform.node=true, ml.max_open_jobs=20} elect leader, _BECOME_MASTER_TASK_, _FINISH_ELECTION_], term: 2, version: 28, delta: master node changed {previous [], current [{Smits-MacBook-Pro.local}{htq86gkZQtmYAAlMVs4AEg}{f7KVxlWpQvqzbqOIXN3dDw}{127.0.0.1}{127.0.0.1:9300}{dilmrt}{ml.machine_memory=17179869184, xpack.installed=true, transform.node=true, ml.max_open_jobs=20}]}
+[2020-06-27T18:02:21,569][INFO ][o.e.c.s.ClusterApplierService] [Smits-MacBook-Pro.local] master node changed {previous [], current [{Smits-MacBook-Pro.local}{htq86gkZQtmYAAlMVs4AEg}{f7KVxlWpQvqzbqOIXN3dDw}{127.0.0.1}{127.0.0.1:9300}{dilmrt}{ml.machine_memory=17179869184, xpack.installed=true, transform.node=true, ml.max_open_jobs=20}]}, term: 2, version: 28, reason: Publication{term=2, version=28}
+[2020-06-27T18:02:21,609][INFO ][o.e.h.AbstractHttpServerTransport] [Smits-MacBook-Pro.local] publish_address {127.0.0.1:9200}, bound_addresses {[::1]:9200}, {127.0.0.1:9200}
+[2020-06-27T18:02:21,610][INFO ][o.e.n.Node               ] [Smits-MacBook-Pro.local] started
+[2020-06-27T18:02:21,820][INFO ][o.e.l.LicenseService     ] [Smits-MacBook-Pro.local] license [b8ea6be4-b035-465a-8a70-29c26d82e1ce] mode [basic] - valid
+[2020-06-27T18:02:21,821][INFO ][o.e.x.s.s.SecurityStatusChangeListener] [Smits-MacBook-Pro.local] Active license is now [BASIC]; Security is disabled
+[2020-06-27T18:02:21,831][INFO ][o.e.g.GatewayService     ] [Smits-MacBook-Pro.local] recovered [0] indices into cluster_state
+[2020-06-27T18:02:22,420][INFO ][o.e.c.m.MetadataCreateIndexService] [Smits-MacBook-Pro.local] [.kibana_task_manager_1] creating index, cause [api], templates [], shards [1]/[1], mappings [_doc]
+[2020-06-27T18:02:22,431][INFO ][o.e.c.r.a.AllocationService] [Smits-MacBook-Pro.local] updating number_of_replicas to [0] for indices [.kibana_task_manager_1]
+[2020-06-27T18:02:22,618][INFO ][o.e.c.m.MetadataCreateIndexService] [Smits-MacBook-Pro.local] [.kibana_1] creating index, cause [api], templates [], shards [1]/[1], mappings [_doc]
+[2020-06-27T18:02:22,619][INFO ][o.e.c.r.a.AllocationService] [Smits-MacBook-Pro.local] updating number_of_replicas to [0] for indices [.kibana_1]
+[2020-06-27T18:02:22,821][INFO ][o.e.c.r.a.AllocationService] [Smits-MacBook-Pro.local] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[.kibana_1][0]]]).
+[2020-06-27T18:02:22,945][INFO ][o.e.x.i.a.TransportPutLifecycleAction] [Smits-MacBook-Pro.local] adding index lifecycle policy [kibana-event-log-policy]
+[2020-06-27T18:02:23,019][INFO ][o.e.c.m.MetadataIndexTemplateService] [Smits-MacBook-Pro.local] adding template [.kibana-event-log-7.8.0-template] for index patterns [.kibana-event-log-7.8.0-*]
+[2020-06-27T18:02:23,076][INFO ][o.e.c.m.MetadataCreateIndexService] [Smits-MacBook-Pro.local] [.kibana-event-log-7.8.0-000001] creating index, cause [api], templates [.kibana-event-log-7.8.0-template], shards [1]/[1], mappings [_doc]
+[2020-06-27T18:02:23,077][INFO ][o.e.c.r.a.AllocationService] [Smits-MacBook-Pro.local] updating number_of_replicas to [0] for indices [.kibana-event-log-7.8.0-000001]
+[2020-06-27T18:02:23,143][INFO ][o.e.x.i.IndexLifecycleTransition] [Smits-MacBook-Pro.local] moving index [.kibana-event-log-7.8.0-000001] from [null] to [{"phase":"new","action":"complete","name":"complete"}] in policy [kibana-event-log-policy]
+[2020-06-27T18:02:23,218][INFO ][o.e.x.i.IndexLifecycleTransition] [Smits-MacBook-Pro.local] moving index [.kibana-event-log-7.8.0-000001] from [{"phase":"new","action":"complete","name":"complete"}] to [{"phase":"hot","action":"unfollow","name":"wait-for-indexing-complete"}] in policy [kibana-event-log-policy]
+[2020-06-27T18:02:23,273][INFO ][o.e.c.r.a.AllocationService] [Smits-MacBook-Pro.local] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[.kibana-event-log-7.8.0-000001][0]]]).
+[2020-06-27T18:02:23,309][INFO ][o.e.x.i.IndexLifecycleTransition] [Smits-MacBook-Pro.local] moving index [.kibana-event-log-7.8.0-000001] from [{"phase":"hot","action":"unfollow","name":"wait-for-indexing-complete"}] to [{"phase":"hot","action":"unfollow","name":"wait-for-follow-shard-tasks"}] in policy [kibana-event-log-policy]
+[2020-06-27T18:02:24,225][INFO ][o.e.c.m.MetadataCreateIndexService] [Smits-MacBook-Pro.local] [ilm-history-2-000001] creating index, cause [api], templates [ilm-history], shards [1]/[0], mappings [_doc]
+[2020-06-27T18:02:24,291][INFO ][o.e.x.i.IndexLifecycleTransition] [Smits-MacBook-Pro.local] moving index [ilm-history-2-000001] from [null] to [{"phase":"new","action":"complete","name":"complete"}] in policy [ilm-history-ilm-policy]
+[2020-06-27T18:02:24,358][INFO ][o.e.x.i.IndexLifecycleTransition] [Smits-MacBook-Pro.local] moving index [ilm-history-2-000001] from [{"phase":"new","action":"complete","name":"complete"}] to [{"phase":"hot","action":"unfollow","name":"wait-for-indexing-complete"}] in policy [ilm-history-ilm-policy]
+[2020-06-27T18:02:24,410][INFO ][o.e.x.i.IndexLifecycleTransition] [Smits-MacBook-Pro.local] moving index [ilm-history-2-000001] from [{"phase":"hot","action":"unfollow","name":"wait-for-indexing-complete"}] to [{"phase":"hot","action":"unfollow","name":"wait-for-follow-shard-tasks"}] in policy [ilm-history-ilm-policy]
+[2020-06-27T18:02:24,446][INFO ][o.e.c.r.a.AllocationService] [Smits-MacBook-Pro.local] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[ilm-history-2-000001][0]]]).
+[2020-06-27T18:02:25,307][INFO ][o.e.c.m.MetadataCreateIndexService] [Smits-MacBook-Pro.local] [.apm-agent-configuration] creating index, cause [api], templates [], shards [1]/[1], mappings [_doc]
+[2020-06-27T18:02:25,308][INFO ][o.e.c.r.a.AllocationService] [Smits-MacBook-Pro.local] updating number_of_replicas to [0] for indices [.apm-agent-configuration]
+[2020-06-27T18:02:25,484][INFO ][o.e.c.m.MetadataCreateIndexService] [Smits-MacBook-Pro.local] [.apm-custom-link] creating index, cause [api], templates [], shards [1]/[1], mappings [_doc]
+[2020-06-27T18:02:25,485][INFO ][o.e.c.r.a.AllocationService] [Smits-MacBook-Pro.local] updating number_of_replicas to [0] for indices [.apm-custom-link]
+[2020-06-27T18:02:25,770][INFO ][o.e.c.r.a.AllocationService] [Smits-MacBook-Pro.local] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[.apm-custom-link][0]]]).
+[2020-06-27T18:02:28,364][INFO ][o.e.c.m.MetadataIndexTemplateService] [Smits-MacBook-Pro.local] adding template [.management-beats] for index patterns [.management-beats]
+[2020-06-27T18:02:28,531][INFO ][o.e.c.m.MetadataMappingService] [Smits-MacBook-Pro.local] [.kibana_task_manager_1/CwspE-o6Sq2KcP8vBRPfQQ] update_mapping [_doc]
+[2020-06-27T18:02:28,568][INFO ][o.e.c.m.MetadataMappingService] [Smits-MacBook-Pro.local] [.kibana_1/WOEUSLeKSg6lJ7Uah_oyvw] update_mapping [_doc]
+[2020-06-27T18:02:51,609][INFO ][o.e.c.r.a.DiskThresholdMonitor] [Smits-MacBook-Pro.local] low disk watermark [85%] exceeded on [htq86gkZQtmYAAlMVs4AEg][Smits-MacBook-Pro.local][/Users/Smit/Documents/Dev/ELK/elasticsearch-7.8.0/data/nodes/0] free: 64.2gb[13.7%], replicas will not be assigned to this node
+[2020-06-27T18:02:57,841][INFO ][o.e.c.m.MetadataCreateIndexService] [Smits-MacBook-Pro.local] [kibana_sample_data_logs] creating index, cause [api], templates [], shards [1]/[1], mappings [_doc]
+[2020-06-27T18:02:57,842][INFO ][o.e.c.r.a.AllocationService] [Smits-MacBook-Pro.local] updating number_of_replicas to [0] for indices [kibana_sample_data_logs]
+[2020-06-27T18:02:58,001][INFO ][o.e.c.r.a.AllocationService] [Smits-MacBook-Pro.local] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[kibana_sample_data_logs][0]]]).
+[2020-06-27T18:02:58,198][INFO ][o.e.c.m.MetadataMappingService] [Smits-MacBook-Pro.local] [kibana_sample_data_logs/em8OjFCmSGyPx07TlQrgtA] update_mapping [_doc]
+[2020-06-27T18:03:05,619][INFO ][o.e.c.m.MetadataMappingService] [Smits-MacBook-Pro.local] [.kibana_1/WOEUSLeKSg6lJ7Uah_oyvw] update_mapping [_doc]
+[2020-06-27T18:03:05,700][INFO ][o.e.c.m.MetadataMappingService] [Smits-MacBook-Pro.local] [.kibana_1/WOEUSLeKSg6lJ7Uah_oyvw] update_mapping [_doc]
+[2020-06-27T18:03:05,765][INFO ][o.e.c.m.MetadataMappingService] [Smits-MacBook-Pro.local] [.kibana_1/WOEUSLeKSg6lJ7Uah_oyvw] update_mapping [_doc]
+[2020-06-27T18:03:05,834][INFO ][o.e.c.m.MetadataMappingService] [Smits-MacBook-Pro.local] [.kibana_1/WOEUSLeKSg6lJ7Uah_oyvw] update_mapping [_doc]
+[2020-06-27T18:03:05,908][INFO ][o.e.c.m.MetadataMappingService] [Smits-MacBook-Pro.local] [.kibana_1/WOEUSLeKSg6lJ7Uah_oyvw] update_mapping [_doc]
+[2020-06-27T18:03:06,042][INFO ][o.e.c.m.MetadataMappingService] [Smits-MacBook-Pro.local] [.kibana_1/WOEUSLeKSg6lJ7Uah_oyvw] update_mapping [_doc]
+[2020-06-27T18:03:07,177][INFO ][o.e.c.m.MetadataMappingService] [Smits-MacBook-Pro.local] [.kibana_1/WOEUSLeKSg6lJ7Uah_oyvw] update_mapping [_doc]
+[2020-06-27T18:03:39,379][INFO ][o.e.c.m.MetadataMappingService] [Smits-MacBook-Pro.local] [.kibana_1/WOEUSLeKSg6lJ7Uah_oyvw] update_mapping [_doc]
+[2020-06-27T18:12:21,582][INFO ][o.e.x.i.IndexLifecycleTransition] [Smits-MacBook-Pro.local] moving index [ilm-history-2-000001] from [{"phase":"hot","action":"unfollow","name":"wait-for-follow-shard-tasks"}] to [{"phase":"hot","action":"unfollow","name":"pause-follower-index"}] in policy [ilm-history-ilm-policy]
+[2020-06-27T18:12:21,651][INFO ][o.e.x.i.IndexLifecycleTransition] [Smits-MacBook-Pro.local] moving index [.kibana-event-log-7.8.0-000001] from [{"phase":"hot","action":"unfollow","name":"wait-for-follow-shard-tasks"}] to [{"phase":"hot","action":"unfollow","name":"pause-follower-index"}] in policy [kibana-event-log-policy]
+[2020-06-27T18:12:21,717][INFO ][o.e.x.i.IndexLifecycleTransition] [Smits-MacBook-Pro.local] moving index [ilm-history-2-000001] from [{"phase":"hot","action":"unfollow","name":"pause-follower-index"}] to [{"phase":"hot","action":"unfollow","name":"close-follower-index"}] in policy [ilm-history-ilm-policy]
+[2020-06-27T18:12:21,750][INFO ][o.e.x.i.IndexLifecycleTransition] [Smits-MacBook-Pro.local] moving index [.kibana-event-log-7.8.0-000001] from [{"phase":"hot","action":"unfollow","name":"pause-follower-index"}] to [{"phase":"hot","action":"unfollow","name":"close-follower-index"}] in policy [kibana-event-log-policy]
+[2020-06-27T18:12:21,781][INFO ][o.e.x.i.IndexLifecycleTransition] [Smits-MacBook-Pro.local] moving index [ilm-history-2-000001] from [{"phase":"hot","action":"unfollow","name":"close-follower-index"}] to [{"phase":"hot","action":"unfollow","name":"unfollow-follower-index"}] in policy [ilm-history-ilm-policy]
+[2020-06-27T18:12:21,816][INFO ][o.e.x.i.IndexLifecycleTransition] [Smits-MacBook-Pro.local] moving index [.kibana-event-log-7.8.0-000001] from [{"phase":"hot","action":"unfollow","name":"close-follower-index"}] to [{"phase":"hot","action":"unfollow","name":"unfollow-follower-index"}] in policy [kibana-event-log-policy]
+[2020-06-27T18:12:21,847][INFO ][o.e.x.i.IndexLifecycleTransition] [Smits-MacBook-Pro.local] moving index [ilm-history-2-000001] from [{"phase":"hot","action":"unfollow","name":"unfollow-follower-index"}] to [{"phase":"hot","action":"unfollow","name":"open-follower-index"}] in policy [ilm-history-ilm-policy]
+[2020-06-27T18:12:21,883][INFO ][o.e.x.i.IndexLifecycleTransition] [Smits-MacBook-Pro.local] moving index [.kibana-event-log-7.8.0-000001] from [{"phase":"hot","action":"unfollow","name":"unfollow-follower-index"}] to [{"phase":"hot","action":"unfollow","name":"open-follower-index"}] in policy [kibana-event-log-policy]
+[2020-06-27T18:12:21,917][INFO ][o.e.x.i.IndexLifecycleTransition] [Smits-MacBook-Pro.local] moving index [ilm-history-2-000001] from [{"phase":"hot","action":"unfollow","name":"open-follower-index"}] to [{"phase":"hot","action":"unfollow","name":"wait-for-yellow-step"}] in policy [ilm-history-ilm-policy]
+[2020-06-27T18:12:21,949][INFO ][o.e.x.i.IndexLifecycleTransition] [Smits-MacBook-Pro.local] moving index [.kibana-event-log-7.8.0-000001] from [{"phase":"hot","action":"unfollow","name":"open-follower-index"}] to [{"phase":"hot","action":"unfollow","name":"wait-for-yellow-step"}] in policy [kibana-event-log-policy]
+[2020-06-27T18:12:21,981][INFO ][o.e.x.i.IndexLifecycleTransition] [Smits-MacBook-Pro.local] moving index [ilm-history-2-000001] from [{"phase":"hot","action":"unfollow","name":"wait-for-yellow-step"}] to [{"phase":"hot","action":"rollover","name":"check-rollover-ready"}] in policy [ilm-history-ilm-policy]
+[2020-06-27T18:12:22,014][INFO ][o.e.x.i.IndexLifecycleTransition] [Smits-MacBook-Pro.local] moving index [.kibana-event-log-7.8.0-000001] from [{"phase":"hot","action":"unfollow","name":"wait-for-yellow-step"}] to [{"phase":"hot","action":"rollover","name":"check-rollover-ready"}] in policy [kibana-event-log-policy]
+brew services start elastic/tap/logstash-full
+[2020-06-27T18:59:22,394][INFO ][o.e.c.m.MetadataIndexTemplateService] [Smits-MacBook-Pro.local] adding template [logstash] for index patterns [logstash-*]
+[2020-06-27T18:59:22,706][INFO ][o.e.c.m.MetadataCreateIndexService] [Smits-MacBook-Pro.local] [logstash-2020.06.27-000001] creating index, cause [api], templates [logstash], shards [1]/[1], mappings [_doc]
+[2020-06-27T18:59:22,987][INFO ][o.e.x.i.a.TransportPutLifecycleAction] [Smits-MacBook-Pro.local] adding index lifecycle policy [logstash-policy]
+[2020-06-27T18:59:23,037][INFO ][o.e.x.i.IndexLifecycleTransition] [Smits-MacBook-Pro.local] moving index [logstash-2020.06.27-000001] from [null] to [{"phase":"new","action":"complete","name":"complete"}] in policy [logstash-policy]
+[2020-06-27T18:59:23,083][INFO ][o.e.x.i.IndexLifecycleTransition] [Smits-MacBook-Pro.local] moving index [logstash-2020.06.27-000001] from [{"phase":"new","action":"complete","name":"complete"}] to [{"phase":"hot","action":"unfollow","name":"wait-for-indexing-complete"}] in policy [logstash-policy]
+[2020-06-27T18:59:23,123][INFO ][o.e.x.i.IndexLifecycleTransition] [Smits-MacBook-Pro.local] moving index [logstash-2020.06.27-000001] from [{"phase":"hot","action":"unfollow","name":"wait-for-indexing-complete"}] to [{"phase":"hot","action":"unfollow","name":"wait-for-follow-shard-tasks"}] in policy [logstash-policy]
+[2020-06-27T18:59:33,739][INFO ][o.e.c.m.MetadataMappingService] [Smits-MacBook-Pro.local] [logstash-2020.06.27-000001/AYo8d4URSs6dmbGlinPfgQ] update_mapping [_doc]
+[2020-06-27T19:02:21,584][INFO ][o.e.x.i.IndexLifecycleTransition] [Smits-MacBook-Pro.local] moving index [logstash-2020.06.27-000001] from [{"phase":"hot","action":"unfollow","name":"wait-for-follow-shard-tasks"}] to [{"phase":"hot","action":"unfollow","name":"pause-follower-index"}] in policy [logstash-policy]
+[2020-06-27T19:02:21,623][INFO ][o.e.x.i.IndexLifecycleTransition] [Smits-MacBook-Pro.local] moving index [logstash-2020.06.27-000001] from [{"phase":"hot","action":"unfollow","name":"pause-follower-index"}] to [{"phase":"hot","action":"unfollow","name":"close-follower-index"}] in policy [logstash-policy]
+[2020-06-27T19:02:21,677][INFO ][o.e.x.i.IndexLifecycleTransition] [Smits-MacBook-Pro.local] moving index [logstash-2020.06.27-000001] from [{"phase":"hot","action":"unfollow","name":"close-follower-index"}] to [{"phase":"hot","action":"unfollow","name":"unfollow-follower-index"}] in policy [logstash-policy]
+[2020-06-27T19:02:21,709][INFO ][o.e.x.i.IndexLifecycleTransition] [Smits-MacBook-Pro.local] moving index [logstash-2020.06.27-000001] from [{"phase":"hot","action":"unfollow","name":"unfollow-follower-index"}] to [{"phase":"hot","action":"unfollow","name":"open-follower-index"}] in policy [logstash-policy]
+[2020-06-27T19:02:21,741][INFO ][o.e.x.i.IndexLifecycleTransition] [Smits-MacBook-Pro.local] moving index [logstash-2020.06.27-000001] from [{"phase":"hot","action":"unfollow","name":"open-follower-index"}] to [{"phase":"hot","action":"unfollow","name":"wait-for-yellow-step"}] in policy [logstash-policy]
+[2020-06-27T19:02:21,774][INFO ][o.e.x.i.IndexLifecycleTransition] [Smits-MacBook-Pro.local] moving index [logstash-2020.06.27-000001] from [{"phase":"hot","action":"unfollow","name":"wait-for-yellow-step"}] to [{"phase":"hot","action":"rollover","name":"check-rollover-ready"}] in policy [logstash-policy]
+[2020-06-27T19:30:31,947][INFO ][o.e.c.m.MetadataIndexTemplateService] [Smits-MacBook-Pro.local] adding template [.management-beats] for index patterns [.management-beats]
+[2020-06-27T21:32:42,922][INFO ][o.e.c.m.MetadataMappingService] [Smits-MacBook-Pro.local] [logstash-2020.06.27-000001/AYo8d4URSs6dmbGlinPfgQ] update_mapping [_doc]
+[2020-06-28T02:36:01,022][INFO ][o.e.c.m.MetadataMappingService] [Smits-MacBook-Pro.local] [logstash-2020.06.27-000001/AYo8d4URSs6dmbGlinPfgQ] update_mapping [_doc]
+[2020-06-28T13:08:23,370][INFO ][o.e.x.m.MlDailyMaintenanceService] [Smits-MacBook-Pro.local] triggering scheduled [ML] maintenance tasks
+[2020-06-28T13:08:23,386][INFO ][o.e.x.m.a.TransportDeleteExpiredDataAction] [Smits-MacBook-Pro.local] Deleting expired data
+[2020-06-28T13:08:23,462][INFO ][o.e.x.m.a.TransportDeleteExpiredDataAction] [Smits-MacBook-Pro.local] Completed deletion of expired ML data
+[2020-06-28T13:08:23,464][INFO ][o.e.x.m.MlDailyMaintenanceService] [Smits-MacBook-Pro.local] Successfully completed [ML] maintenance tasks
+[2020-06-28T21:25:50,066][INFO ][o.e.x.s.SnapshotRetentionTask] [Smits-MacBook-Pro.local] starting SLM retention snapshot cleanup task
+[2020-06-28T21:25:50,071][INFO ][o.e.x.s.SnapshotRetentionTask] [Smits-MacBook-Pro.local] there are no repositories to fetch, SLM retention snapshot cleanup task complete
+^C[2020-06-28T22:51:25,614][INFO ][o.e.x.m.p.NativeController] [Smits-MacBook-Pro.local] Native controller process has stopped - no new native processes can be started
+[2020-06-28T22:51:25,615][INFO ][o.e.n.Node               ] [Smits-MacBook-Pro.local] stopping ...
+[2020-06-28T22:51:25,633][INFO ][o.e.x.w.WatcherService   ] [Smits-MacBook-Pro.local] stopping watch service, reason [shutdown initiated]
+[2020-06-28T22:51:25,634][INFO ][o.e.x.w.WatcherLifeCycleService] [Smits-MacBook-Pro.local] watcher has stopped and shutdown
+[2020-06-28T22:51:25,999][INFO ][o.e.n.Node               ] [Smits-MacBook-Pro.local] stopped
+[2020-06-28T22:51:26,000][INFO ][o.e.n.Node               ] [Smits-MacBook-Pro.local] closing ...
+[2020-06-28T22:51:26,019][INFO ][o.e.n.Node               ] [Smits-MacBook-Pro.local] closed
+(base) Smits-MacBook-Pro:elasticsearch-7.8.0 Smit$ 

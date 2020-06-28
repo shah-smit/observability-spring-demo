@@ -1,0 +1,1470 @@
+Last login: Sat Jun 27 16:43:33 on ttys001
+You have new mail.
+-bash: installation: No such file or directory
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+(base) Smits-MacBook-Pro:~ Smit$ cd /Users/Smit/Documents/Dev/ELK/kibana-7.8.0-darwin-x86_64 
+(base) Smits-MacBook-Pro:kibana-7.8.0-darwin-x86_64 Smit$ bin/kibana
+  log   [09:58:26.442] [warning][plugins-discovery] Expect plugin "id" in camelCase, but found: apm_oss
+  log   [09:58:26.457] [warning][plugins-discovery] Expect plugin "id" in camelCase, but found: triggers_actions_ui
+  log   [09:58:55.493] [info][plugins-service] Plugin "visTypeXy" is disabled.
+  log   [09:58:55.494] [info][plugins-service] Plugin "endpoint" is disabled.
+  log   [09:58:55.494] [info][plugins-service] Plugin "lists" is disabled.
+  log   [09:58:55.495] [info][plugins-service] Plugin "ingestManager" is disabled.
+  log   [09:58:58.760] [fatal][root] Error: Port 5601 is already in use. Another instance of Kibana may be running!
+    at Root.shutdown (/Users/Smit/Documents/Dev/ELK/kibana-7.8.0-darwin-x86_64/src/core/server/root/index.js:67:18)
+    at Root.setup (/Users/Smit/Documents/Dev/ELK/kibana-7.8.0-darwin-x86_64/src/core/server/root/index.js:46:18)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+
+ FATAL  Error: Port 5601 is already in use. Another instance of Kibana may be running!
+
+(base) Smits-MacBook-Pro:kibana-7.8.0-darwin-x86_64 Smit$ sudo lsof -t -i:5601
+Password:
+1330
+33605
+(base) Smits-MacBook-Pro:kibana-7.8.0-darwin-x86_64 Smit$ sudo kill -9 $(sudo lsof -t -i:5601)
+(base) Smits-MacBook-Pro:kibana-7.8.0-darwin-x86_64 Smit$ bin/kibana
+  log   [10:00:36.721] [warning][plugins-discovery] Expect plugin "id" in camelCase, but found: apm_oss
+  log   [10:00:36.737] [warning][plugins-discovery] Expect plugin "id" in camelCase, but found: triggers_actions_ui
+  log   [10:00:42.908] [info][plugins-service] Plugin "visTypeXy" is disabled.
+  log   [10:00:42.909] [info][plugins-service] Plugin "endpoint" is disabled.
+  log   [10:00:42.909] [info][plugins-service] Plugin "ingestManager" is disabled.
+  log   [10:00:42.910] [info][plugins-service] Plugin "lists" is disabled.
+  log   [10:00:43.952] [info][plugins-system] Setting up [94] plugins: [taskManager,licensing,observability,eventLog,encryptedSavedObjects,code,usageCollection,ossTelemetry,telemetryCollectionManager,telemetry,telemetryCollectionXpack,kibanaLegacy,devTools,translations,uiActions,statusPage,share,newsfeed,kibanaUtils,mapsLegacy,mapsLegacyLicensing,kibanaReact,inspector,embeddable,advancedUiActions,embeddableEnhanced,drilldowns,indexPatternManagement,esUiShared,discover,charts,bfetch,expressions,data,home,cloud,console,consoleExtensions,apm_oss,searchprofiler,painlessLab,grokdebugger,management,upgradeAssistant,reporting,licenseManagement,indexManagement,remoteClusters,crossClusterReplication,indexLifecycleManagement,watcher,advancedSettings,telemetryManagementSection,fileUpload,dataEnhanced,visualizations,visTypeTimeseries,rollup,visTypeVega,visTypeVislib,visTypeTimelion,features,security,snapshotRestore,transform,ingestPipelines,canvas,visTypeTagcloud,visTypeTable,visTypeMetric,visTypeMarkdown,inputControlVis,savedObjects,navigation,lens,graph,maps,visualize,dashboard,dashboardEnhanced,savedObjectsManagement,spaces,actions,case,alerting,alertingBuiltins,triggers_actions_ui,infra,monitoring,logstash,uptime,ml,siem,apm]
+  log   [10:00:43.962] [warning][config][encryptedSavedObjects][plugins] Generating a random key for xpack.encryptedSavedObjects.encryptionKey. To be able to decrypt encrypted saved objects attributes after restart, please set xpack.encryptedSavedObjects.encryptionKey in kibana.yml
+  log   [10:00:44.157] [warning][config][plugins][security] Generating a random key for xpack.security.encryptionKey. To prevent sessions from being invalidated on restart, please set xpack.security.encryptionKey in kibana.yml
+  log   [10:00:44.157] [warning][config][plugins][security] Session cookies will be transmitted over insecure connections. This is not recommended.
+  log   [10:00:44.209] [warning][actions][actions][plugins] APIs are disabled due to the Encrypted Saved Objects plugin using an ephemeral encryption key. Please set xpack.encryptedSavedObjects.encryptionKey in kibana.yml.
+  log   [10:00:44.223] [warning][alerting][alerting][plugins][plugins] APIs are disabled due to the Encrypted Saved Objects plugin using an ephemeral encryption key. Please set xpack.encryptedSavedObjects.encryptionKey in kibana.yml.
+  log   [10:00:44.253] [info][monitoring][monitoring][plugins] config sourced from: production cluster
+  log   [10:00:44.254] [warning][monitoring][monitoring][plugins] X-Pack Monitoring Cluster Alerts will not be available: undefined
+  log   [10:00:44.265] [error][elasticsearch][monitoring] Request error, retrying
+GET http://localhost:9200/_xpack => connect ECONNREFUSED 127.0.0.1:9200
+  log   [10:00:44.268] [error][elasticsearch][monitoring] Request error, retrying
+GET http://localhost:9200/_xpack => connect ECONNREFUSED 127.0.0.1:9200
+  log   [10:00:44.270] [error][data][elasticsearch] Request error, retrying
+GET http://localhost:9200/_xpack => connect ECONNREFUSED 127.0.0.1:9200
+  log   [10:00:44.271] [warning][elasticsearch][monitoring] Unable to revive connection: http://localhost:9200/
+  log   [10:00:44.271] [warning][elasticsearch][monitoring] No living connections
+  log   [10:00:44.272] [warning][licensing][plugins] License information could not be obtained from Elasticsearch due to Error: No Living connections error
+  log   [10:00:44.474] [info][savedobjects-service] Waiting until all Elasticsearch nodes are compatible with Kibana before starting saved objects migrations...
+  log   [10:00:44.475] [warning][elasticsearch][monitoring] Unable to revive connection: http://localhost:9200/
+  log   [10:00:44.476] [warning][elasticsearch][monitoring] No living connections
+  log   [10:00:44.476] [warning][licensing][plugins] License information could not be obtained from Elasticsearch due to Error: No Living connections error
+  log   [10:00:44.479] [warning][data][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:00:44.480] [warning][data][elasticsearch] No living connections
+  log   [10:00:44.480] [warning][licensing][plugins] License information could not be obtained from Elasticsearch due to Error: No Living connections error
+  log   [10:00:44.481] [info][plugins][searchprofiler] You cannot use searchprofiler because license information is not available at this time.
+  log   [10:00:44.481] [info][painlessLab][plugins] You cannot use painlessLab because license information is not available at this time.
+  log   [10:00:44.481] [info][indexManagement][plugins] You cannot use index_management because license information is not available at this time.
+  log   [10:00:44.482] [info][plugins][remoteClusters] You cannot use Remote Clusters because license information is not available at this time.
+  log   [10:00:44.482] [info][crossClusterReplication][plugins] You cannot use crossClusterReplication because license information is not available at this time.
+  log   [10:00:44.483] [info][indexLifecycleManagement][plugins] You cannot use index_lifecycle_management because license information is not available at this time.
+  log   [10:00:44.483] [info][plugins][watcher] You cannot use watcher because license information is not available at this time.
+  log   [10:00:44.483] [info][plugins][rollup] You cannot use rollup because license information is not available at this time.
+  log   [10:00:44.483] [info][plugins][snapshotRestore] You cannot use snapshot_restore because license information is not available at this time.
+  log   [10:00:44.484] [info][plugins][transform] You cannot use transform because license information is not available at this time.
+  log   [10:00:44.484] [info][ingestPipelines][plugins] You cannot use ingest_pipelines because license information is not available at this time.
+  log   [10:00:44.485] [info][kibana-monitoring][monitoring][monitoring][plugins] Monitoring status upload endpoint is not enabled in Elasticsearch:Monitoring stats collection is stopped
+  log   [10:00:44.486] [error][admin][elasticsearch] Request error, retrying
+GET http://localhost:9200/_nodes?filter_path=nodes.*.version%2Cnodes.*.http.publish_address%2Cnodes.*.ip => connect ECONNREFUSED 127.0.0.1:9200
+  log   [10:00:44.487] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:00:44.487] [warning][admin][elasticsearch] No living connections
+  log   [10:00:44.488] [error][savedobjects-service] Unable to retrieve version information from Elasticsearch nodes.
+  log   [10:00:46.983] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:00:46.983] [warning][admin][elasticsearch] No living connections
+  log   [10:00:49.486] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:00:49.487] [warning][admin][elasticsearch] No living connections
+  log   [10:00:51.987] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:00:51.988] [warning][admin][elasticsearch] No living connections
+  log   [10:00:54.491] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:00:54.492] [warning][admin][elasticsearch] No living connections
+  log   [10:00:56.995] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:00:56.996] [warning][admin][elasticsearch] No living connections
+  log   [10:00:59.498] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:00:59.498] [warning][admin][elasticsearch] No living connections
+  log   [10:01:02.002] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:01:02.003] [warning][admin][elasticsearch] No living connections
+  log   [10:01:04.508] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:01:04.509] [warning][admin][elasticsearch] No living connections
+  log   [10:01:07.012] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:01:07.012] [warning][admin][elasticsearch] No living connections
+  log   [10:01:09.515] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:01:09.516] [warning][admin][elasticsearch] No living connections
+  log   [10:01:12.020] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:01:12.021] [warning][admin][elasticsearch] No living connections
+  log   [10:01:14.263] [warning][elasticsearch][monitoring] Unable to revive connection: http://localhost:9200/
+  log   [10:01:14.263] [warning][elasticsearch][monitoring] No living connections
+  log   [10:01:14.264] [warning][licensing][plugins] License information could not be obtained from Elasticsearch due to Error: No Living connections error
+  log   [10:01:14.264] [warning][data][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:01:14.265] [warning][data][elasticsearch] No living connections
+  log   [10:01:14.265] [warning][licensing][plugins] License information could not be obtained from Elasticsearch due to Error: No Living connections error
+  log   [10:01:14.524] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:01:14.525] [warning][admin][elasticsearch] No living connections
+  log   [10:01:17.028] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:01:17.028] [warning][admin][elasticsearch] No living connections
+  log   [10:01:19.529] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:01:19.530] [warning][admin][elasticsearch] No living connections
+  log   [10:01:22.032] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:01:22.032] [warning][admin][elasticsearch] No living connections
+  log   [10:01:24.533] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:01:24.533] [warning][admin][elasticsearch] No living connections
+  log   [10:01:27.035] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:01:27.036] [warning][admin][elasticsearch] No living connections
+  log   [10:01:29.539] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:01:29.539] [warning][admin][elasticsearch] No living connections
+  log   [10:01:32.043] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:01:32.044] [warning][admin][elasticsearch] No living connections
+  log   [10:01:34.547] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:01:34.547] [warning][admin][elasticsearch] No living connections
+  log   [10:01:37.048] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:01:37.048] [warning][admin][elasticsearch] No living connections
+  log   [10:01:39.552] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:01:39.552] [warning][admin][elasticsearch] No living connections
+  log   [10:01:42.057] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:01:42.058] [warning][admin][elasticsearch] No living connections
+  log   [10:01:44.266] [warning][elasticsearch][monitoring] Unable to revive connection: http://localhost:9200/
+  log   [10:01:44.267] [warning][elasticsearch][monitoring] No living connections
+  log   [10:01:44.267] [warning][licensing][plugins] License information could not be obtained from Elasticsearch due to Error: No Living connections error
+  log   [10:01:44.268] [warning][data][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:01:44.269] [warning][data][elasticsearch] No living connections
+  log   [10:01:44.269] [warning][licensing][plugins] License information could not be obtained from Elasticsearch due to Error: No Living connections error
+  log   [10:01:44.560] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:01:44.561] [warning][admin][elasticsearch] No living connections
+  log   [10:01:47.062] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:01:47.063] [warning][admin][elasticsearch] No living connections
+  log   [10:01:49.566] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:01:49.567] [warning][admin][elasticsearch] No living connections
+  log   [10:01:52.071] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:01:52.072] [warning][admin][elasticsearch] No living connections
+  log   [10:01:54.573] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:01:54.574] [warning][admin][elasticsearch] No living connections
+  log   [10:01:57.077] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:01:57.077] [warning][admin][elasticsearch] No living connections
+  log   [10:01:59.577] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:01:59.580] [warning][admin][elasticsearch] No living connections
+  log   [10:02:02.080] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:02:02.081] [warning][admin][elasticsearch] No living connections
+  log   [10:02:04.583] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:02:04.584] [warning][admin][elasticsearch] No living connections
+  log   [10:02:07.086] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:02:07.087] [warning][admin][elasticsearch] No living connections
+  log   [10:02:09.589] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:02:09.590] [warning][admin][elasticsearch] No living connections
+  log   [10:02:12.091] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:02:12.092] [warning][admin][elasticsearch] No living connections
+  log   [10:02:14.270] [warning][elasticsearch][monitoring] Unable to revive connection: http://localhost:9200/
+  log   [10:02:14.270] [warning][elasticsearch][monitoring] No living connections
+  log   [10:02:14.271] [warning][licensing][plugins] License information could not be obtained from Elasticsearch due to Error: No Living connections error
+  log   [10:02:14.271] [warning][data][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:02:14.272] [warning][data][elasticsearch] No living connections
+  log   [10:02:14.272] [warning][licensing][plugins] License information could not be obtained from Elasticsearch due to Error: No Living connections error
+  log   [10:02:14.594] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:02:14.595] [warning][admin][elasticsearch] No living connections
+  log   [10:02:17.099] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:02:17.100] [warning][admin][elasticsearch] No living connections
+  log   [10:02:19.609] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [10:02:19.610] [warning][admin][elasticsearch] No living connections
+  log   [10:02:22.208] [info][savedobjects-service] Starting saved objects migrations
+  log   [10:02:22.246] [info][savedobjects-service] Creating index .kibana_task_manager_1.
+  log   [10:02:22.255] [info][savedobjects-service] Creating index .kibana_1.
+  log   [10:02:22.767] [info][savedobjects-service] Pointing alias .kibana_task_manager to .kibana_task_manager_1.
+  log   [10:02:22.838] [info][savedobjects-service] Finished in 592ms.
+  log   [10:02:22.857] [info][savedobjects-service] Pointing alias .kibana to .kibana_1.
+  log   [10:02:22.901] [info][savedobjects-service] Finished in 657ms.
+  log   [10:02:22.904] [info][plugins-system] Starting [72] plugins: [taskManager,licensing,observability,eventLog,encryptedSavedObjects,code,usageCollection,ossTelemetry,telemetryCollectionManager,telemetry,telemetryCollectionXpack,kibanaLegacy,translations,share,discover,bfetch,expressions,data,home,cloud,console,consoleExtensions,apm_oss,searchprofiler,painlessLab,grokdebugger,management,upgradeAssistant,reporting,licenseManagement,indexManagement,remoteClusters,crossClusterReplication,indexLifecycleManagement,watcher,advancedSettings,fileUpload,dataEnhanced,visualizations,visTypeTimeseries,rollup,visTypeVega,visTypeVislib,visTypeTimelion,features,security,snapshotRestore,transform,ingestPipelines,canvas,visTypeTagcloud,visTypeTable,visTypeMetric,visTypeMarkdown,inputControlVis,lens,graph,visualize,dashboard,savedObjectsManagement,spaces,actions,case,alerting,alertingBuiltins,infra,monitoring,logstash,uptime,ml,siem,apm]
+  log   [10:02:26.701] [info][status][plugin:kibana@7.8.0] Status changed from uninitialized to green - Ready
+  log   [10:02:26.704] [info][status][plugin:elasticsearch@7.8.0] Status changed from uninitialized to yellow - Waiting for Elasticsearch
+  log   [10:02:26.704] [info][status][plugin:elasticsearch@7.8.0] Status changed from yellow to green - Ready
+  log   [10:02:26.706] [info][status][plugin:xpack_main@7.8.0] Status changed from uninitialized to green - Ready
+  log   [10:02:26.714] [info][status][plugin:monitoring@7.8.0] Status changed from uninitialized to green - Ready
+  log   [10:02:26.718] [warning][plugins][reporting] Generating a random key for xpack.reporting.encryptionKey. To prevent sessions from being invalidated on restart, please set xpack.reporting.encryptionKey in kibana.yml
+  log   [10:02:26.719] [info][plugins][reporting] Chromium sandbox provides an additional layer of protection, and is supported for Darwin OS. Automatically enabling Chromium sandbox.
+  log   [10:02:28.215] [info][status][plugin:reporting@7.8.0] Status changed from uninitialized to green - Ready
+  log   [10:02:28.245] [info][status][plugin:spaces@7.8.0] Status changed from uninitialized to green - Ready
+  log   [10:02:28.248] [info][status][plugin:security@7.8.0] Status changed from uninitialized to green - Ready
+  log   [10:02:28.259] [info][status][plugin:dashboard_mode@7.8.0] Status changed from uninitialized to green - Ready
+  log   [10:02:28.262] [info][status][plugin:beats_management@7.8.0] Status changed from uninitialized to green - Ready
+  log   [10:02:28.289] [info][status][plugin:maps@7.8.0] Status changed from uninitialized to green - Ready
+  log   [10:02:28.298] [info][plugins][taskManager][taskManager] TaskManager is identified by the Kibana UUID: 9fec22e9-5716-43f4-94b4-f00206632257
+  log   [10:02:28.303] [info][status][plugin:task_manager@7.8.0] Status changed from uninitialized to green - Ready
+  log   [10:02:28.305] [info][status][plugin:encryptedSavedObjects@7.8.0] Status changed from uninitialized to green - Ready
+  log   [10:02:28.310] [info][status][plugin:apm_oss@7.8.0] Status changed from uninitialized to green - Ready
+  log   [10:02:28.313] [info][status][plugin:console_legacy@7.8.0] Status changed from uninitialized to green - Ready
+  log   [10:02:28.317] [info][status][plugin:region_map@7.8.0] Status changed from uninitialized to green - Ready
+  log   [10:02:28.323] [info][status][plugin:ui_metric@7.8.0] Status changed from uninitialized to green - Ready
+  log   [10:02:28.332] [info][listening] Server running at http://localhost:5601
+  log   [10:02:33.674] [info][server][Kibana][http] http server running at http://localhost:5601
+  log   [10:02:38.535] [info][crossClusterReplication][plugins] Your basic license does not support crossClusterReplication. Please upgrade your license.
+  log   [10:02:38.535] [info][plugins][watcher] Your basic license does not support watcher. Please upgrade your license.
+  log   [10:02:38.536] [info][kibana-monitoring][monitoring][monitoring][plugins] Starting monitoring stats collection
+^C  log   [11:30:08.648] [info][plugins-system] Stopping all plugins.
+  log   [11:30:08.648] [info][apm][plugins] Stopping plugin
+  log   [11:30:08.649] [info][plugins][siem] Stopping plugin
+  log   [11:30:08.649] [info][ml][plugins] Stopping plugin
+  log   [11:30:08.649] [info][plugins][uptime] Stopping plugin
+  log   [11:30:08.649] [info][logstash][plugins] Stopping plugin
+  log   [11:30:08.650] [info][monitoring][plugins] Stopping plugin
+  log   [11:30:08.651] [info][infra][plugins] Stopping plugin
+  log   [11:30:08.651] [info][alertingBuiltins][plugins] Stopping plugin
+  log   [11:30:08.651] [info][alerting][plugins] Stopping plugin
+  log   [11:30:08.652] [info][case][plugins] Stopping plugin
+  log   [11:30:08.652] [info][actions][plugins] Stopping plugin
+  log   [11:30:08.652] [info][plugins][spaces] Stopping plugin
+  log   [11:30:08.652] [info][plugins][savedObjectsManagement] Stopping plugin
+  log   [11:30:08.653] [info][dashboard][plugins] Stopping plugin
+  log   [11:30:08.653] [info][plugins][visualize] Stopping plugin
+  log   [11:30:08.653] [info][graph][plugins] Stopping plugin
+  log   [11:30:08.653] [info][lens][plugins] Stopping plugin
+  log   [11:30:08.654] [info][inputControlVis][plugins] Stopping plugin
+  log   [11:30:08.654] [info][plugins][visTypeMarkdown] Stopping plugin
+  log   [11:30:08.654] [info][plugins][visTypeMetric] Stopping plugin
+  log   [11:30:08.654] [info][plugins][visTypeTable] Stopping plugin
+  log   [11:30:08.654] [info][plugins][visTypeTagcloud] Stopping plugin
+  log   [11:30:08.654] [info][canvas][plugins] Stopping plugin
+  log   [11:30:08.655] [info][ingestPipelines][plugins] Stopping plugin
+  log   [11:30:08.655] [info][plugins][transform] Stopping plugin
+  log   [11:30:08.655] [info][plugins][snapshotRestore] Stopping plugin
+  log   [11:30:08.655] [info][plugins][security] Stopping plugin
+  log   [11:30:08.656] [info][features][plugins] Stopping plugin
+  log   [11:30:08.656] [info][plugins][visTypeTimelion] Stopping plugin
+  log   [11:30:08.656] [info][plugins][visTypeVislib] Stopping plugin
+  log   [11:30:08.657] [info][plugins][visTypeVega] Stopping plugin
+  log   [11:30:08.657] [info][plugins][rollup] Stopping plugin
+  log   [11:30:08.657] [info][plugins][visTypeTimeseries] Stopping plugin
+  log   [11:30:08.659] [info][plugins][visualizations] Stopping plugin
+  log   [11:30:08.659] [info][dataEnhanced][plugins] Stopping plugin
+  log   [11:30:08.659] [info][fileUpload][plugins] Stopping plugin
+  log   [11:30:08.659] [info][advancedSettings][plugins] Stopping plugin
+  log   [11:30:08.660] [info][plugins][watcher] Stopping plugin
+  log   [11:30:08.660] [info][indexLifecycleManagement][plugins] Stopping plugin
+  log   [11:30:08.660] [info][crossClusterReplication][plugins] Stopping plugin
+  log   [11:30:08.661] [info][plugins][remoteClusters] Stopping plugin
+  log   [11:30:08.661] [info][indexManagement][plugins] Stopping plugin
+  log   [11:30:08.661] [info][licenseManagement][plugins] Stopping plugin
+  log   [11:30:08.661] [info][plugins][reporting] Stopping plugin
+  log   [11:30:08.662] [info][plugins][upgradeAssistant] Stopping plugin
+  log   [11:30:08.662] [info][management][plugins] Stopping plugin
+  log   [11:30:08.662] [info][grokdebugger][plugins] Stopping plugin
+  log   [11:30:08.662] [info][painlessLab][plugins] Stopping plugin
+  log   [11:30:08.664] [info][plugins][searchprofiler] Stopping plugin
+  log   [11:30:08.664] [info][apm_oss][plugins] Stopping plugin
+  log   [11:30:08.664] [info][consoleExtensions][plugins] Stopping plugin
+  log   [11:30:08.665] [info][console][plugins] Stopping plugin
+  log   [11:30:08.665] [info][cloud][plugins] Stopping plugin
+  log   [11:30:08.665] [info][home][plugins] Stopping plugin
+  log   [11:30:08.665] [info][data][plugins] Stopping plugin
+  log   [11:30:08.665] [info][expressions][plugins] Stopping plugin
+  log   [11:30:08.666] [info][bfetch][plugins] Stopping plugin
+  log   [11:30:08.666] [info][discover][plugins] Stopping plugin
+  log   [11:30:08.666] [info][plugins][share] Stopping plugin
+  log   [11:30:08.667] [info][plugins][translations] Stopping plugin
+  log   [11:30:08.667] [info][kibanaLegacy][plugins] Stopping plugin
+  log   [11:30:08.667] [info][plugins][telemetryCollectionXpack] Stopping plugin
+  log   [11:30:08.668] [info][plugins][telemetry] Stopping plugin
+  log   [11:30:08.668] [info][plugins][telemetryCollectionManager] Stopping plugin
+  log   [11:30:08.668] [info][ossTelemetry][plugins] Stopping plugin
+  log   [11:30:08.668] [info][plugins][usageCollection] Stopping plugin
+  log   [11:30:08.669] [info][code][plugins] Stopping plugin
+  log   [11:30:08.669] [info][encryptedSavedObjects][plugins] Stopping plugin
+  log   [11:30:08.669] [info][eventLog][plugins] Stopping plugin
+  log   [11:30:08.670] [info][observability][plugins] Stopping plugin
+  log   [11:30:08.671] [info][licensing][plugins] Stopping plugin
+  log   [11:30:08.672] [info][plugins][taskManager] Stopping plugin
+(base) Smits-MacBook-Pro:kibana-7.8.0-darwin-x86_64 Smit$ 
+(base) Smits-MacBook-Pro:kibana-7.8.0-darwin-x86_64 Smit$ bin/kibana
+  log   [11:30:16.660] [warning][plugins-discovery] Expect plugin "id" in camelCase, but found: apm_oss
+  log   [11:30:16.677] [warning][plugins-discovery] Expect plugin "id" in camelCase, but found: triggers_actions_ui
+  log   [11:30:26.134] [info][plugins-service] Plugin "visTypeXy" is disabled.
+  log   [11:30:26.135] [info][plugins-service] Plugin "endpoint" is disabled.
+  log   [11:30:26.135] [info][plugins-service] Plugin "ingestManager" is disabled.
+  log   [11:30:26.136] [info][plugins-service] Plugin "lists" is disabled.
+  log   [11:30:27.752] [info][plugins-system] Setting up [94] plugins: [taskManager,licensing,observability,eventLog,encryptedSavedObjects,code,usageCollection,ossTelemetry,telemetryCollectionManager,telemetry,telemetryCollectionXpack,kibanaLegacy,devTools,translations,uiActions,statusPage,share,newsfeed,mapsLegacy,mapsLegacyLicensing,kibanaUtils,kibanaReact,inspector,embeddable,advancedUiActions,embeddableEnhanced,drilldowns,indexPatternManagement,discover,esUiShared,charts,bfetch,expressions,data,home,cloud,console,consoleExtensions,apm_oss,searchprofiler,painlessLab,grokdebugger,management,upgradeAssistant,reporting,licenseManagement,indexManagement,remoteClusters,crossClusterReplication,indexLifecycleManagement,watcher,advancedSettings,telemetryManagementSection,fileUpload,dataEnhanced,visualizations,visTypeTimeseries,rollup,visTypeVislib,visTypeVega,visTypeTimelion,features,security,snapshotRestore,transform,ingestPipelines,canvas,visTypeTable,visTypeTagcloud,visTypeMetric,visTypeMarkdown,inputControlVis,navigation,lens,graph,maps,savedObjects,visualize,dashboard,dashboardEnhanced,savedObjectsManagement,spaces,actions,case,alerting,alertingBuiltins,triggers_actions_ui,infra,monitoring,logstash,uptime,ml,siem,apm]
+  log   [11:30:27.762] [warning][config][encryptedSavedObjects][plugins] Generating a random key for xpack.encryptedSavedObjects.encryptionKey. To be able to decrypt encrypted saved objects attributes after restart, please set xpack.encryptedSavedObjects.encryptionKey in kibana.yml
+  log   [11:30:27.952] [warning][config][plugins][security] Generating a random key for xpack.security.encryptionKey. To prevent sessions from being invalidated on restart, please set xpack.security.encryptionKey in kibana.yml
+  log   [11:30:27.953] [warning][config][plugins][security] Session cookies will be transmitted over insecure connections. This is not recommended.
+  log   [11:30:28.001] [warning][actions][actions][plugins] APIs are disabled due to the Encrypted Saved Objects plugin using an ephemeral encryption key. Please set xpack.encryptedSavedObjects.encryptionKey in kibana.yml.
+  log   [11:30:28.016] [warning][alerting][alerting][plugins][plugins] APIs are disabled due to the Encrypted Saved Objects plugin using an ephemeral encryption key. Please set xpack.encryptedSavedObjects.encryptionKey in kibana.yml.
+  log   [11:30:28.050] [info][monitoring][monitoring][plugins] config sourced from: production cluster
+  log   [11:30:28.051] [warning][monitoring][monitoring][plugins] X-Pack Monitoring Cluster Alerts will not be available: undefined
+  log   [11:30:28.277] [info][savedobjects-service] Waiting until all Elasticsearch nodes are compatible with Kibana before starting saved objects migrations...
+  log   [11:30:28.279] [info][crossClusterReplication][plugins] Your basic license does not support crossClusterReplication. Please upgrade your license.
+  log   [11:30:28.280] [info][plugins][watcher] Your basic license does not support watcher. Please upgrade your license.
+  log   [11:30:28.280] [info][kibana-monitoring][monitoring][monitoring][plugins] Starting monitoring stats collection
+  log   [11:30:28.288] [info][savedobjects-service] Starting saved objects migrations
+  log   [11:30:28.349] [info][plugins-system] Starting [72] plugins: [taskManager,licensing,observability,eventLog,encryptedSavedObjects,code,usageCollection,ossTelemetry,telemetryCollectionManager,telemetry,telemetryCollectionXpack,kibanaLegacy,translations,share,discover,bfetch,expressions,data,home,cloud,console,consoleExtensions,apm_oss,searchprofiler,painlessLab,grokdebugger,management,upgradeAssistant,reporting,licenseManagement,indexManagement,remoteClusters,crossClusterReplication,indexLifecycleManagement,watcher,advancedSettings,fileUpload,dataEnhanced,visualizations,visTypeTimeseries,rollup,visTypeVislib,visTypeVega,visTypeTimelion,features,security,snapshotRestore,transform,ingestPipelines,canvas,visTypeTable,visTypeTagcloud,visTypeMetric,visTypeMarkdown,inputControlVis,lens,graph,visualize,dashboard,savedObjectsManagement,spaces,actions,case,alerting,alertingBuiltins,infra,monitoring,logstash,uptime,ml,siem,apm]
+  log   [11:30:30.798] [info][status][plugin:kibana@7.8.0] Status changed from uninitialized to green - Ready
+  log   [11:30:30.801] [info][status][plugin:elasticsearch@7.8.0] Status changed from uninitialized to yellow - Waiting for Elasticsearch
+  log   [11:30:30.802] [info][status][plugin:elasticsearch@7.8.0] Status changed from yellow to green - Ready
+  log   [11:30:30.803] [info][status][plugin:xpack_main@7.8.0] Status changed from uninitialized to green - Ready
+  log   [11:30:30.812] [info][status][plugin:monitoring@7.8.0] Status changed from uninitialized to green - Ready
+  log   [11:30:30.815] [warning][plugins][reporting] Generating a random key for xpack.reporting.encryptionKey. To prevent sessions from being invalidated on restart, please set xpack.reporting.encryptionKey in kibana.yml
+  log   [11:30:30.816] [info][plugins][reporting] Chromium sandbox provides an additional layer of protection, and is supported for Darwin OS. Automatically enabling Chromium sandbox.
+  log   [11:30:31.244] [info][status][plugin:reporting@7.8.0] Status changed from uninitialized to green - Ready
+  log   [11:30:31.275] [info][status][plugin:spaces@7.8.0] Status changed from uninitialized to green - Ready
+  log   [11:30:31.278] [info][status][plugin:security@7.8.0] Status changed from uninitialized to green - Ready
+  log   [11:30:31.293] [info][status][plugin:dashboard_mode@7.8.0] Status changed from uninitialized to green - Ready
+  log   [11:30:31.299] [info][status][plugin:beats_management@7.8.0] Status changed from uninitialized to green - Ready
+  log   [11:30:31.350] [info][status][plugin:maps@7.8.0] Status changed from uninitialized to green - Ready
+  log   [11:30:31.359] [info][plugins][taskManager][taskManager] TaskManager is identified by the Kibana UUID: 9fec22e9-5716-43f4-94b4-f00206632257
+  log   [11:30:31.361] [info][status][plugin:task_manager@7.8.0] Status changed from uninitialized to green - Ready
+  log   [11:30:31.364] [info][status][plugin:encryptedSavedObjects@7.8.0] Status changed from uninitialized to green - Ready
+  log   [11:30:31.368] [info][status][plugin:console_legacy@7.8.0] Status changed from uninitialized to green - Ready
+  log   [11:30:31.372] [info][status][plugin:region_map@7.8.0] Status changed from uninitialized to green - Ready
+  log   [11:30:31.374] [info][status][plugin:apm_oss@7.8.0] Status changed from uninitialized to green - Ready
+  log   [11:30:31.377] [info][status][plugin:ui_metric@7.8.0] Status changed from uninitialized to green - Ready
+  log   [11:30:31.389] [info][listening] Server running at http://localhost:5601
+  log   [11:30:31.929] [info][server][Kibana][http] http server running at http://localhost:5601
+  log   [16:26:57.839] [error][apm][plugins] Could not get dynamic index pattern because indices "apm-*,apm-*,apm-*" don't exist
+  log   [16:26:57.844] [error][apm][plugins] Could not get dynamic index pattern because indices "apm-*,apm-*,apm-*" don't exist
+  log   [14:51:26.764] [error][admin][elasticsearch] Request error, retrying
+GET http://localhost:9200/_nodes?filter_path=nodes.*.version%2Cnodes.*.http.publish_address%2Cnodes.*.ip => connect ECONNREFUSED 127.0.0.1:9200
+  log   [14:51:26.770] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:26.770] [warning][admin][elasticsearch] No living connections
+  log   [14:51:26.771] [error][savedobjects-service] Unable to retrieve version information from Elasticsearch nodes.
+  log   [14:51:26.772] [error][status][plugin:xpack_main@7.8.0] Status changed from green to red - Unable to retrieve version information from Elasticsearch nodes.
+  log   [14:51:26.772] [error][status][plugin:reporting@7.8.0] Status changed from green to red - Unable to retrieve version information from Elasticsearch nodes.
+  log   [14:51:26.772] [error][status][plugin:spaces@7.8.0] Status changed from green to red - Unable to retrieve version information from Elasticsearch nodes.
+  log   [14:51:26.773] [error][status][plugin:beats_management@7.8.0] Status changed from green to red - Unable to retrieve version information from Elasticsearch nodes.
+  log   [14:51:26.773] [error][status][plugin:security@7.8.0] Status changed from green to red - Unable to retrieve version information from Elasticsearch nodes.
+  log   [14:51:26.773] [error][status][plugin:elasticsearch@7.8.0] Status changed from green to red - Unable to retrieve version information from Elasticsearch nodes.
+  log   [14:51:26.775] [error][data][elasticsearch] Request error, retrying
+GET http://localhost:9200/_xpack => connect ECONNREFUSED 127.0.0.1:9200
+  log   [14:51:26.778] [warning][data][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:26.778] [warning][data][elasticsearch] No living connections
+  log   [14:51:26.778] [warning][licensing][plugins] License information could not be obtained from Elasticsearch due to Error: No Living connections error
+  log   [14:51:26.780] [info][plugins][searchprofiler] You cannot use searchprofiler because license information is not available at this time.
+  log   [14:51:26.780] [info][painlessLab][plugins] You cannot use painlessLab because license information is not available at this time.
+  log   [14:51:26.780] [info][indexManagement][plugins] You cannot use index_management because license information is not available at this time.
+  log   [14:51:26.780] [info][plugins][remoteClusters] You cannot use Remote Clusters because license information is not available at this time.
+  log   [14:51:26.781] [info][crossClusterReplication][plugins] You cannot use crossClusterReplication because license information is not available at this time.
+  log   [14:51:26.781] [info][indexLifecycleManagement][plugins] You cannot use index_lifecycle_management because license information is not available at this time.
+  log   [14:51:26.781] [info][plugins][watcher] You cannot use watcher because license information is not available at this time.
+  log   [14:51:26.781] [info][plugins][rollup] You cannot use rollup because license information is not available at this time.
+  log   [14:51:26.781] [info][plugins][snapshotRestore] You cannot use snapshot_restore because license information is not available at this time.
+  log   [14:51:26.782] [info][plugins][transform] You cannot use transform because license information is not available at this time.
+  log   [14:51:26.782] [info][ingestPipelines][plugins] You cannot use ingest_pipelines because license information is not available at this time.
+  log   [14:51:26.782] [info][kibana-monitoring][monitoring][monitoring][plugins] Monitoring status upload endpoint is not enabled in Elasticsearch:Monitoring stats collection is stopped
+  log   [14:51:26.783] [error][status][plugin:xpack_main@7.8.0] Status changed from red to red - No Living connections
+  log   [14:51:26.783] [error][status][plugin:reporting@7.8.0] Status changed from red to red - No Living connections
+  log   [14:51:26.783] [error][status][plugin:spaces@7.8.0] Status changed from red to red - No Living connections
+  log   [14:51:26.784] [error][status][plugin:beats_management@7.8.0] Status changed from red to red - No Living connections
+  log   [14:51:26.784] [error][status][plugin:security@7.8.0] Status changed from red to red - No Living connections
+  log   [14:51:27.142] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:27.142] [warning][admin][elasticsearch] No living connections
+  log   [14:51:27.144] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:51:27.145] [warning][data][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:27.145] [warning][data][elasticsearch] No living connections
+  log   [14:51:27.156] [error][error][esqueue][queue-worker][reporting] kbxkc5wg0te2a7d8cceho94l - job querying failed: Error: No Living connections
+    at sendReqWithConnection (/Users/Smit/Documents/Dev/ELK/kibana-7.8.0-darwin-x86_64/node_modules/elasticsearch/src/lib/transport.js:266:15)
+    at next (/Users/Smit/Documents/Dev/ELK/kibana-7.8.0-darwin-x86_64/node_modules/elasticsearch/src/lib/connection_pool.js:243:7)
+    at process._tickCallback (internal/process/next_tick.js:61:11)
+  log   [14:51:28.329] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:28.330] [warning][admin][elasticsearch] No living connections
+  log   [14:51:29.260] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:29.260] [warning][admin][elasticsearch] No living connections
+  log   [14:51:29.335] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:29.335] [warning][admin][elasticsearch] No living connections
+  log   [14:51:30.146] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:30.146] [warning][admin][elasticsearch] No living connections
+  log   [14:51:30.147] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:51:30.341] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:30.342] [warning][admin][elasticsearch] No living connections
+  log   [14:51:31.348] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:31.349] [warning][admin][elasticsearch] No living connections
+  log   [14:51:31.759] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:31.759] [warning][admin][elasticsearch] No living connections
+  log   [14:51:32.352] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:32.353] [warning][admin][elasticsearch] No living connections
+  log   [14:51:33.151] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:33.151] [warning][admin][elasticsearch] No living connections
+  log   [14:51:33.151] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:51:33.357] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:33.357] [warning][admin][elasticsearch] No living connections
+  log   [14:51:34.264] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:34.265] [warning][admin][elasticsearch] No living connections
+  log   [14:51:34.364] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:34.364] [warning][admin][elasticsearch] No living connections
+  log   [14:51:35.369] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:35.370] [warning][admin][elasticsearch] No living connections
+  log   [14:51:36.150] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:36.150] [warning][admin][elasticsearch] No living connections
+  log   [14:51:36.151] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:51:36.375] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:36.376] [warning][admin][elasticsearch] No living connections
+  log   [14:51:36.766] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:36.767] [warning][admin][elasticsearch] No living connections
+  log   [14:51:37.381] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:37.382] [warning][admin][elasticsearch] No living connections
+  log   [14:51:38.389] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:38.389] [warning][admin][elasticsearch] No living connections
+  log   [14:51:39.153] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:39.154] [warning][admin][elasticsearch] No living connections
+  log   [14:51:39.154] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:51:39.269] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:39.269] [warning][admin][elasticsearch] No living connections
+  log   [14:51:39.392] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:39.392] [warning][admin][elasticsearch] No living connections
+  log   [14:51:40.397] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:40.398] [warning][admin][elasticsearch] No living connections
+  log   [14:51:41.405] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:41.405] [warning][admin][elasticsearch] No living connections
+  log   [14:51:41.769] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:41.771] [warning][admin][elasticsearch] No living connections
+  log   [14:51:42.159] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:42.160] [warning][admin][elasticsearch] No living connections
+  log   [14:51:42.160] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:51:42.414] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:42.414] [warning][admin][elasticsearch] No living connections
+  log   [14:51:43.419] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:43.420] [warning][admin][elasticsearch] No living connections
+  log   [14:51:44.272] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:44.273] [warning][admin][elasticsearch] No living connections
+  log   [14:51:44.423] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:44.423] [warning][admin][elasticsearch] No living connections
+  log   [14:51:45.157] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:45.157] [warning][admin][elasticsearch] No living connections
+  log   [14:51:45.158] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:51:45.429] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:45.430] [warning][admin][elasticsearch] No living connections
+  log   [14:51:46.436] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:46.437] [warning][admin][elasticsearch] No living connections
+  log   [14:51:46.772] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:46.772] [warning][admin][elasticsearch] No living connections
+  log   [14:51:47.443] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:47.443] [warning][admin][elasticsearch] No living connections
+  log   [14:51:48.161] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:48.162] [warning][admin][elasticsearch] No living connections
+  log   [14:51:48.162] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:51:48.449] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:48.450] [warning][admin][elasticsearch] No living connections
+  log   [14:51:49.278] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:49.278] [warning][admin][elasticsearch] No living connections
+  log   [14:51:49.453] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:49.453] [warning][admin][elasticsearch] No living connections
+  log   [14:51:50.460] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:50.460] [warning][admin][elasticsearch] No living connections
+  log   [14:51:51.162] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:51.162] [warning][admin][elasticsearch] No living connections
+  log   [14:51:51.162] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:51:51.470] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:51.470] [warning][admin][elasticsearch] No living connections
+  log   [14:51:51.777] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:51.778] [warning][admin][elasticsearch] No living connections
+  log   [14:51:52.477] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:52.478] [warning][admin][elasticsearch] No living connections
+  log   [14:51:53.483] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:53.483] [warning][admin][elasticsearch] No living connections
+  log   [14:51:54.165] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:54.166] [warning][admin][elasticsearch] No living connections
+  log   [14:51:54.166] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:51:54.280] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:54.280] [warning][admin][elasticsearch] No living connections
+  log   [14:51:54.485] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:54.486] [warning][admin][elasticsearch] No living connections
+  log   [14:51:55.214] [warning][data][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:55.214] [warning][data][elasticsearch] No living connections
+  log   [14:51:55.215] [warning][licensing][plugins] License information could not be obtained from Elasticsearch due to Error: No Living connections error
+  log   [14:51:55.215] [error][elasticsearch][monitoring] Request error, retrying
+GET http://localhost:9200/_xpack => connect ECONNREFUSED 127.0.0.1:9200
+  log   [14:51:55.219] [warning][elasticsearch][monitoring] Unable to revive connection: http://localhost:9200/
+  log   [14:51:55.219] [warning][elasticsearch][monitoring] No living connections
+  log   [14:51:55.219] [warning][licensing][plugins] License information could not be obtained from Elasticsearch due to Error: No Living connections error
+  log   [14:51:55.488] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:55.489] [warning][admin][elasticsearch] No living connections
+  log   [14:51:56.495] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:56.496] [warning][admin][elasticsearch] No living connections
+  log   [14:51:56.779] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:56.779] [warning][admin][elasticsearch] No living connections
+  log   [14:51:57.161] [warning][data][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:57.161] [warning][data][elasticsearch] No living connections
+  log   [14:51:57.162] [error][error][esqueue][queue-worker][reporting] kbxkc5wg0te2a7d8cceho94l - job querying failed: Error: No Living connections
+    at sendReqWithConnection (/Users/Smit/Documents/Dev/ELK/kibana-7.8.0-darwin-x86_64/node_modules/elasticsearch/src/lib/transport.js:266:15)
+    at next (/Users/Smit/Documents/Dev/ELK/kibana-7.8.0-darwin-x86_64/node_modules/elasticsearch/src/lib/connection_pool.js:243:7)
+    at process._tickCallback (internal/process/next_tick.js:61:11)
+  log   [14:51:57.163] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:57.164] [warning][admin][elasticsearch] No living connections
+  log   [14:51:57.164] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:51:57.500] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:57.501] [warning][admin][elasticsearch] No living connections
+  log   [14:51:58.506] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:58.506] [warning][admin][elasticsearch] No living connections
+  log   [14:51:59.284] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:59.284] [warning][admin][elasticsearch] No living connections
+  log   [14:51:59.510] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:51:59.510] [warning][admin][elasticsearch] No living connections
+  log   [14:52:00.167] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:00.167] [warning][admin][elasticsearch] No living connections
+  log   [14:52:00.167] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:52:00.516] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:00.517] [warning][admin][elasticsearch] No living connections
+  log   [14:52:01.522] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:01.523] [warning][admin][elasticsearch] No living connections
+  log   [14:52:01.785] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:01.786] [warning][admin][elasticsearch] No living connections
+  log   [14:52:02.528] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:02.528] [warning][admin][elasticsearch] No living connections
+  log   [14:52:03.169] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:03.170] [warning][admin][elasticsearch] No living connections
+  log   [14:52:03.172] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:52:03.535] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:03.535] [warning][admin][elasticsearch] No living connections
+  log   [14:52:04.287] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:04.288] [warning][admin][elasticsearch] No living connections
+  log   [14:52:04.541] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:04.541] [warning][admin][elasticsearch] No living connections
+  log   [14:52:05.547] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:05.547] [warning][admin][elasticsearch] No living connections
+  log   [14:52:06.174] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:06.175] [warning][admin][elasticsearch] No living connections
+  log   [14:52:06.175] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:52:06.552] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:06.552] [warning][admin][elasticsearch] No living connections
+  log   [14:52:06.789] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:06.789] [warning][admin][elasticsearch] No living connections
+  log   [14:52:07.558] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:07.558] [warning][admin][elasticsearch] No living connections
+  log   [14:52:08.562] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:08.563] [warning][admin][elasticsearch] No living connections
+  log   [14:52:09.178] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:09.178] [warning][admin][elasticsearch] No living connections
+  log   [14:52:09.179] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:52:09.293] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:09.293] [warning][admin][elasticsearch] No living connections
+  log   [14:52:09.569] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:09.569] [warning][admin][elasticsearch] No living connections
+  log   [14:52:10.574] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:10.574] [warning][admin][elasticsearch] No living connections
+  log   [14:52:11.579] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:11.580] [warning][admin][elasticsearch] No living connections
+  log   [14:52:11.795] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:11.795] [warning][admin][elasticsearch] No living connections
+  log   [14:52:12.182] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:12.183] [warning][admin][elasticsearch] No living connections
+  log   [14:52:12.184] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:52:12.588] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:12.588] [warning][admin][elasticsearch] No living connections
+  log   [14:52:13.592] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:13.592] [warning][admin][elasticsearch] No living connections
+  log   [14:52:14.297] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:14.298] [warning][admin][elasticsearch] No living connections
+  log   [14:52:14.599] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:14.599] [warning][admin][elasticsearch] No living connections
+  log   [14:52:15.185] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:15.186] [warning][admin][elasticsearch] No living connections
+  log   [14:52:15.186] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:52:15.602] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:15.603] [warning][admin][elasticsearch] No living connections
+  log   [14:52:16.609] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:16.610] [warning][admin][elasticsearch] No living connections
+  log   [14:52:16.799] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:16.799] [warning][admin][elasticsearch] No living connections
+  log   [14:52:17.616] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:17.619] [warning][admin][elasticsearch] No living connections
+  log   [14:52:18.186] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:18.187] [warning][admin][elasticsearch] No living connections
+  log   [14:52:18.187] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:52:18.625] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:18.626] [warning][admin][elasticsearch] No living connections
+  log   [14:52:19.303] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:19.304] [warning][admin][elasticsearch] No living connections
+  log   [14:52:19.633] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:19.634] [warning][admin][elasticsearch] No living connections
+  log   [14:52:20.639] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:20.639] [warning][admin][elasticsearch] No living connections
+  log   [14:52:21.187] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:21.187] [warning][admin][elasticsearch] No living connections
+  log   [14:52:21.188] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:52:21.646] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:21.647] [warning][admin][elasticsearch] No living connections
+  log   [14:52:21.806] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:21.807] [warning][admin][elasticsearch] No living connections
+  log   [14:52:22.653] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:22.654] [warning][admin][elasticsearch] No living connections
+  log   [14:52:23.659] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:23.660] [warning][admin][elasticsearch] No living connections
+  log   [14:52:24.189] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:24.189] [warning][admin][elasticsearch] No living connections
+  log   [14:52:24.190] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:52:24.306] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:24.307] [warning][admin][elasticsearch] No living connections
+  log   [14:52:24.665] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:24.666] [warning][admin][elasticsearch] No living connections
+  log   [14:52:25.215] [warning][data][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:25.216] [warning][data][elasticsearch] No living connections
+  log   [14:52:25.216] [warning][licensing][plugins] License information could not be obtained from Elasticsearch due to Error: No Living connections error
+  log   [14:52:25.217] [warning][elasticsearch][monitoring] Unable to revive connection: http://localhost:9200/
+  log   [14:52:25.217] [warning][elasticsearch][monitoring] No living connections
+  log   [14:52:25.217] [warning][licensing][plugins] License information could not be obtained from Elasticsearch due to Error: No Living connections error
+  log   [14:52:25.670] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:25.671] [warning][admin][elasticsearch] No living connections
+  log   [14:52:26.676] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:26.676] [warning][admin][elasticsearch] No living connections
+  log   [14:52:26.810] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:26.811] [warning][admin][elasticsearch] No living connections
+  log   [14:52:27.165] [warning][data][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:27.166] [warning][data][elasticsearch] No living connections
+  log   [14:52:27.166] [error][error][esqueue][queue-worker][reporting] kbxkc5wg0te2a7d8cceho94l - job querying failed: Error: No Living connections
+    at sendReqWithConnection (/Users/Smit/Documents/Dev/ELK/kibana-7.8.0-darwin-x86_64/node_modules/elasticsearch/src/lib/transport.js:266:15)
+    at next (/Users/Smit/Documents/Dev/ELK/kibana-7.8.0-darwin-x86_64/node_modules/elasticsearch/src/lib/connection_pool.js:243:7)
+    at process._tickCallback (internal/process/next_tick.js:61:11)
+  log   [14:52:27.193] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:27.194] [warning][admin][elasticsearch] No living connections
+  log   [14:52:27.194] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:52:27.681] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:27.681] [warning][admin][elasticsearch] No living connections
+  log   [14:52:28.686] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:28.687] [warning][admin][elasticsearch] No living connections
+  log   [14:52:29.312] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:29.313] [warning][admin][elasticsearch] No living connections
+  log   [14:52:29.693] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:29.694] [warning][admin][elasticsearch] No living connections
+  log   [14:52:30.200] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:30.200] [warning][admin][elasticsearch] No living connections
+  log   [14:52:30.200] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:52:30.699] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:30.700] [warning][admin][elasticsearch] No living connections
+  log   [14:52:31.705] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:31.706] [warning][admin][elasticsearch] No living connections
+  log   [14:52:31.816] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:31.816] [warning][admin][elasticsearch] No living connections
+  log   [14:52:32.713] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:32.713] [warning][admin][elasticsearch] No living connections
+  log   [14:52:33.199] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:33.200] [warning][admin][elasticsearch] No living connections
+  log   [14:52:33.200] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:52:33.721] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:33.721] [warning][admin][elasticsearch] No living connections
+  log   [14:52:34.317] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:34.318] [warning][admin][elasticsearch] No living connections
+  log   [14:52:34.730] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:34.731] [warning][admin][elasticsearch] No living connections
+  log   [14:52:35.738] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:35.738] [warning][admin][elasticsearch] No living connections
+  log   [14:52:36.203] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:36.204] [warning][admin][elasticsearch] No living connections
+  log   [14:52:36.204] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:52:36.746] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:36.747] [warning][admin][elasticsearch] No living connections
+  log   [14:52:36.821] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:36.822] [warning][admin][elasticsearch] No living connections
+  log   [14:52:37.750] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:37.751] [warning][admin][elasticsearch] No living connections
+  log   [14:52:38.757] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:38.759] [warning][admin][elasticsearch] No living connections
+  log   [14:52:39.206] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:39.206] [warning][admin][elasticsearch] No living connections
+  log   [14:52:39.206] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:52:39.324] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:39.324] [warning][admin][elasticsearch] No living connections
+  log   [14:52:39.765] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:39.765] [warning][admin][elasticsearch] No living connections
+  log   [14:52:40.771] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:40.772] [warning][admin][elasticsearch] No living connections
+  log   [14:52:41.774] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:41.774] [warning][admin][elasticsearch] No living connections
+  log   [14:52:41.828] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:41.828] [warning][admin][elasticsearch] No living connections
+  log   [14:52:42.207] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:42.207] [warning][admin][elasticsearch] No living connections
+  log   [14:52:42.208] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:52:42.777] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:42.777] [warning][admin][elasticsearch] No living connections
+  log   [14:52:43.782] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:43.782] [warning][admin][elasticsearch] No living connections
+  log   [14:52:44.330] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:44.332] [warning][admin][elasticsearch] No living connections
+  log   [14:52:44.789] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:44.789] [warning][admin][elasticsearch] No living connections
+  log   [14:52:45.211] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:45.211] [warning][admin][elasticsearch] No living connections
+  log   [14:52:45.212] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:52:45.796] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:45.796] [warning][admin][elasticsearch] No living connections
+  log   [14:52:46.800] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:46.800] [warning][admin][elasticsearch] No living connections
+  log   [14:52:46.835] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:46.836] [warning][admin][elasticsearch] No living connections
+  log   [14:52:47.807] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:47.807] [warning][admin][elasticsearch] No living connections
+  log   [14:52:48.215] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:48.215] [warning][admin][elasticsearch] No living connections
+  log   [14:52:48.216] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:52:48.812] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:48.812] [warning][admin][elasticsearch] No living connections
+  log   [14:52:49.336] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:49.337] [warning][admin][elasticsearch] No living connections
+  log   [14:52:49.818] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:49.818] [warning][admin][elasticsearch] No living connections
+  log   [14:52:50.825] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:50.826] [warning][admin][elasticsearch] No living connections
+  log   [14:52:51.218] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:51.218] [warning][admin][elasticsearch] No living connections
+  log   [14:52:51.218] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:52:51.832] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:51.833] [warning][admin][elasticsearch] No living connections
+  log   [14:52:51.836] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:51.836] [warning][admin][elasticsearch] No living connections
+  log   [14:52:52.839] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:52.839] [warning][admin][elasticsearch] No living connections
+  log   [14:52:53.845] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:53.845] [warning][admin][elasticsearch] No living connections
+  log   [14:52:54.221] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:54.221] [warning][admin][elasticsearch] No living connections
+  log   [14:52:54.222] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:52:54.340] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:54.340] [warning][admin][elasticsearch] No living connections
+  log   [14:52:54.850] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:54.851] [warning][admin][elasticsearch] No living connections
+  log   [14:52:55.219] [warning][data][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:55.219] [warning][data][elasticsearch] No living connections
+  log   [14:52:55.220] [warning][licensing][plugins] License information could not be obtained from Elasticsearch due to Error: No Living connections error
+  log   [14:52:55.220] [warning][elasticsearch][monitoring] Unable to revive connection: http://localhost:9200/
+  log   [14:52:55.221] [warning][elasticsearch][monitoring] No living connections
+  log   [14:52:55.221] [warning][licensing][plugins] License information could not be obtained from Elasticsearch due to Error: No Living connections error
+  log   [14:52:55.857] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:55.858] [warning][admin][elasticsearch] No living connections
+  log   [14:52:56.845] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:56.845] [warning][admin][elasticsearch] No living connections
+  log   [14:52:56.864] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:56.864] [warning][admin][elasticsearch] No living connections
+  log   [14:52:57.170] [warning][data][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:57.170] [warning][data][elasticsearch] No living connections
+  log   [14:52:57.170] [error][error][esqueue][queue-worker][reporting] kbxkc5wg0te2a7d8cceho94l - job querying failed: Error: No Living connections
+    at sendReqWithConnection (/Users/Smit/Documents/Dev/ELK/kibana-7.8.0-darwin-x86_64/node_modules/elasticsearch/src/lib/transport.js:266:15)
+    at next (/Users/Smit/Documents/Dev/ELK/kibana-7.8.0-darwin-x86_64/node_modules/elasticsearch/src/lib/connection_pool.js:243:7)
+    at process._tickCallback (internal/process/next_tick.js:61:11)
+  log   [14:52:57.225] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:57.225] [warning][admin][elasticsearch] No living connections
+  log   [14:52:57.225] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:52:57.870] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:57.870] [warning][admin][elasticsearch] No living connections
+  log   [14:52:58.875] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:58.876] [warning][admin][elasticsearch] No living connections
+  log   [14:52:59.347] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:59.347] [warning][admin][elasticsearch] No living connections
+  log   [14:52:59.881] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:52:59.881] [warning][admin][elasticsearch] No living connections
+  log   [14:53:00.228] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:00.229] [warning][admin][elasticsearch] No living connections
+  log   [14:53:00.229] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:53:00.885] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:00.886] [warning][admin][elasticsearch] No living connections
+  log   [14:53:01.851] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:01.852] [warning][admin][elasticsearch] No living connections
+  log   [14:53:01.891] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:01.891] [warning][admin][elasticsearch] No living connections
+  log   [14:53:02.899] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:02.899] [warning][admin][elasticsearch] No living connections
+  log   [14:53:03.230] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:03.230] [warning][admin][elasticsearch] No living connections
+  log   [14:53:03.231] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:53:03.902] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:03.902] [warning][admin][elasticsearch] No living connections
+  log   [14:53:04.355] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:04.356] [warning][admin][elasticsearch] No living connections
+  log   [14:53:04.904] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:04.904] [warning][admin][elasticsearch] No living connections
+  log   [14:53:05.911] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:05.912] [warning][admin][elasticsearch] No living connections
+  log   [14:53:06.237] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:06.237] [warning][admin][elasticsearch] No living connections
+  log   [14:53:06.238] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:53:06.859] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:06.859] [warning][admin][elasticsearch] No living connections
+  log   [14:53:06.917] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:06.917] [warning][admin][elasticsearch] No living connections
+  log   [14:53:07.924] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:07.925] [warning][admin][elasticsearch] No living connections
+  log   [14:53:08.931] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:08.931] [warning][admin][elasticsearch] No living connections
+  log   [14:53:09.237] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:09.238] [warning][admin][elasticsearch] No living connections
+  log   [14:53:09.238] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:53:09.362] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:09.362] [warning][admin][elasticsearch] No living connections
+  log   [14:53:09.935] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:09.935] [warning][admin][elasticsearch] No living connections
+  log   [14:53:10.941] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:10.943] [warning][admin][elasticsearch] No living connections
+  log   [14:53:11.867] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:11.867] [warning][admin][elasticsearch] No living connections
+  log   [14:53:11.949] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:11.949] [warning][admin][elasticsearch] No living connections
+  log   [14:53:12.242] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:12.242] [warning][admin][elasticsearch] No living connections
+  log   [14:53:12.243] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:53:12.956] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:12.956] [warning][admin][elasticsearch] No living connections
+  log   [14:53:13.960] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:13.960] [warning][admin][elasticsearch] No living connections
+  log   [14:53:14.371] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:14.371] [warning][admin][elasticsearch] No living connections
+  log   [14:53:14.966] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:14.967] [warning][admin][elasticsearch] No living connections
+  log   [14:53:15.246] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:15.246] [warning][admin][elasticsearch] No living connections
+  log   [14:53:15.249] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:53:15.972] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:15.972] [warning][admin][elasticsearch] No living connections
+  log   [14:53:16.873] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:16.873] [warning][admin][elasticsearch] No living connections
+  log   [14:53:16.977] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:16.978] [warning][admin][elasticsearch] No living connections
+  log   [14:53:17.985] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:17.986] [warning][admin][elasticsearch] No living connections
+  log   [14:53:18.249] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:18.250] [warning][admin][elasticsearch] No living connections
+  log   [14:53:18.250] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:53:18.991] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:18.992] [warning][admin][elasticsearch] No living connections
+  log   [14:53:19.377] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:19.378] [warning][admin][elasticsearch] No living connections
+  log   [14:53:19.996] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:19.997] [warning][admin][elasticsearch] No living connections
+  log   [14:53:21.006] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:21.006] [warning][admin][elasticsearch] No living connections
+  log   [14:53:21.253] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:21.253] [warning][admin][elasticsearch] No living connections
+  log   [14:53:21.253] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:53:21.883] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:21.883] [warning][admin][elasticsearch] No living connections
+  log   [14:53:22.010] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:22.011] [warning][admin][elasticsearch] No living connections
+  log   [14:53:23.014] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:23.015] [warning][admin][elasticsearch] No living connections
+  log   [14:53:24.022] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:24.022] [warning][admin][elasticsearch] No living connections
+  log   [14:53:24.257] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:24.257] [warning][admin][elasticsearch] No living connections
+  log   [14:53:24.257] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:53:24.387] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:24.387] [warning][admin][elasticsearch] No living connections
+  log   [14:53:25.031] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:25.031] [warning][admin][elasticsearch] No living connections
+  log   [14:53:25.221] [warning][data][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:25.221] [warning][data][elasticsearch] No living connections
+  log   [14:53:25.222] [warning][licensing][plugins] License information could not be obtained from Elasticsearch due to Error: No Living connections error
+  log   [14:53:25.222] [warning][elasticsearch][monitoring] Unable to revive connection: http://localhost:9200/
+  log   [14:53:25.223] [warning][elasticsearch][monitoring] No living connections
+  log   [14:53:25.223] [warning][licensing][plugins] License information could not be obtained from Elasticsearch due to Error: No Living connections error
+  log   [14:53:26.037] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:26.037] [warning][admin][elasticsearch] No living connections
+  log   [14:53:26.892] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:26.893] [warning][admin][elasticsearch] No living connections
+  log   [14:53:27.044] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:27.045] [warning][admin][elasticsearch] No living connections
+  log   [14:53:27.177] [warning][data][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:27.177] [warning][data][elasticsearch] No living connections
+  log   [14:53:27.178] [error][error][esqueue][queue-worker][reporting] kbxkc5wg0te2a7d8cceho94l - job querying failed: Error: No Living connections
+    at sendReqWithConnection (/Users/Smit/Documents/Dev/ELK/kibana-7.8.0-darwin-x86_64/node_modules/elasticsearch/src/lib/transport.js:266:15)
+    at next (/Users/Smit/Documents/Dev/ELK/kibana-7.8.0-darwin-x86_64/node_modules/elasticsearch/src/lib/connection_pool.js:243:7)
+    at process._tickCallback (internal/process/next_tick.js:61:11)
+  log   [14:53:27.262] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:27.262] [warning][admin][elasticsearch] No living connections
+  log   [14:53:27.265] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:53:28.051] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:28.051] [warning][admin][elasticsearch] No living connections
+  log   [14:53:29.058] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:29.059] [warning][admin][elasticsearch] No living connections
+  log   [14:53:29.396] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:29.396] [warning][admin][elasticsearch] No living connections
+  log   [14:53:30.063] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:30.064] [warning][admin][elasticsearch] No living connections
+  log   [14:53:30.267] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:30.267] [warning][admin][elasticsearch] No living connections
+  log   [14:53:30.268] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:53:31.068] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:31.069] [warning][admin][elasticsearch] No living connections
+  log   [14:53:31.899] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:31.899] [warning][admin][elasticsearch] No living connections
+  log   [14:53:32.074] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:32.074] [warning][admin][elasticsearch] No living connections
+  log   [14:53:33.083] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:33.084] [warning][admin][elasticsearch] No living connections
+  log   [14:53:33.271] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:33.272] [warning][admin][elasticsearch] No living connections
+  log   [14:53:33.272] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:53:34.090] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:34.091] [warning][admin][elasticsearch] No living connections
+  log   [14:53:34.404] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:34.404] [warning][admin][elasticsearch] No living connections
+  log   [14:53:35.096] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:35.097] [warning][admin][elasticsearch] No living connections
+  log   [14:53:36.099] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:36.099] [warning][admin][elasticsearch] No living connections
+  log   [14:53:36.272] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:36.272] [warning][admin][elasticsearch] No living connections
+  log   [14:53:36.273] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:53:36.909] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:36.909] [warning][admin][elasticsearch] No living connections
+  log   [14:53:37.108] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:37.109] [warning][admin][elasticsearch] No living connections
+  log   [14:53:38.113] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:38.114] [warning][admin][elasticsearch] No living connections
+  log   [14:53:39.121] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:39.121] [warning][admin][elasticsearch] No living connections
+  log   [14:53:39.274] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:39.275] [warning][admin][elasticsearch] No living connections
+  log   [14:53:39.275] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:53:39.413] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:39.413] [warning][admin][elasticsearch] No living connections
+  log   [14:53:40.124] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:40.125] [warning][admin][elasticsearch] No living connections
+  log   [14:53:41.130] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:41.130] [warning][admin][elasticsearch] No living connections
+  log   [14:53:41.916] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:41.916] [warning][admin][elasticsearch] No living connections
+  log   [14:53:42.134] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:42.134] [warning][admin][elasticsearch] No living connections
+  log   [14:53:42.278] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:42.278] [warning][admin][elasticsearch] No living connections
+  log   [14:53:42.279] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:53:43.143] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:43.145] [warning][admin][elasticsearch] No living connections
+  log   [14:53:44.150] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:44.151] [warning][admin][elasticsearch] No living connections
+  log   [14:53:44.419] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:44.420] [warning][admin][elasticsearch] No living connections
+  log   [14:53:45.156] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:45.156] [warning][admin][elasticsearch] No living connections
+  log   [14:53:45.283] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:45.284] [warning][admin][elasticsearch] No living connections
+  log   [14:53:45.284] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:53:46.163] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:46.164] [warning][admin][elasticsearch] No living connections
+  log   [14:53:46.923] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:46.924] [warning][admin][elasticsearch] No living connections
+  log   [14:53:47.171] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:47.171] [warning][admin][elasticsearch] No living connections
+  log   [14:53:48.175] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:48.176] [warning][admin][elasticsearch] No living connections
+  log   [14:53:48.287] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:48.287] [warning][admin][elasticsearch] No living connections
+  log   [14:53:48.288] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:53:49.181] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:49.181] [warning][admin][elasticsearch] No living connections
+  log   [14:53:49.424] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:49.425] [warning][admin][elasticsearch] No living connections
+  log   [14:53:50.186] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:50.186] [warning][admin][elasticsearch] No living connections
+  log   [14:53:51.192] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:51.193] [warning][admin][elasticsearch] No living connections
+  log   [14:53:51.291] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:51.291] [warning][admin][elasticsearch] No living connections
+  log   [14:53:51.292] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:53:51.929] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:51.929] [warning][admin][elasticsearch] No living connections
+  log   [14:53:52.199] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:52.199] [warning][admin][elasticsearch] No living connections
+  log   [14:53:53.202] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:53.202] [warning][admin][elasticsearch] No living connections
+  log   [14:53:54.207] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:54.207] [warning][admin][elasticsearch] No living connections
+  log   [14:53:54.294] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:54.294] [warning][admin][elasticsearch] No living connections
+  log   [14:53:54.294] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:53:54.430] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:54.431] [warning][admin][elasticsearch] No living connections
+  log   [14:53:55.213] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:55.213] [warning][admin][elasticsearch] No living connections
+  log   [14:53:55.222] [warning][data][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:55.222] [warning][data][elasticsearch] No living connections
+  log   [14:53:55.222] [warning][licensing][plugins] License information could not be obtained from Elasticsearch due to Error: No Living connections error
+  log   [14:53:55.223] [warning][elasticsearch][monitoring] Unable to revive connection: http://localhost:9200/
+  log   [14:53:55.223] [warning][elasticsearch][monitoring] No living connections
+  log   [14:53:55.226] [warning][licensing][plugins] License information could not be obtained from Elasticsearch due to Error: No Living connections error
+  log   [14:53:56.219] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:56.219] [warning][admin][elasticsearch] No living connections
+  log   [14:53:56.935] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:56.936] [warning][admin][elasticsearch] No living connections
+  log   [14:53:57.181] [warning][data][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:57.181] [warning][data][elasticsearch] No living connections
+  log   [14:53:57.181] [error][error][esqueue][queue-worker][reporting] kbxkc5wg0te2a7d8cceho94l - job querying failed: Error: No Living connections
+    at sendReqWithConnection (/Users/Smit/Documents/Dev/ELK/kibana-7.8.0-darwin-x86_64/node_modules/elasticsearch/src/lib/transport.js:266:15)
+    at next (/Users/Smit/Documents/Dev/ELK/kibana-7.8.0-darwin-x86_64/node_modules/elasticsearch/src/lib/connection_pool.js:243:7)
+    at process._tickCallback (internal/process/next_tick.js:61:11)
+  log   [14:53:57.225] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:57.226] [warning][admin][elasticsearch] No living connections
+  log   [14:53:57.298] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:57.298] [warning][admin][elasticsearch] No living connections
+  log   [14:53:57.299] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:53:58.232] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:58.233] [warning][admin][elasticsearch] No living connections
+  log   [14:53:59.240] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:59.240] [warning][admin][elasticsearch] No living connections
+  log   [14:53:59.440] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:53:59.442] [warning][admin][elasticsearch] No living connections
+  log   [14:54:00.246] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:00.247] [warning][admin][elasticsearch] No living connections
+  log   [14:54:00.302] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:00.302] [warning][admin][elasticsearch] No living connections
+  log   [14:54:00.303] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:54:01.249] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:01.250] [warning][admin][elasticsearch] No living connections
+  log   [14:54:01.944] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:01.945] [warning][admin][elasticsearch] No living connections
+  log   [14:54:02.253] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:02.253] [warning][admin][elasticsearch] No living connections
+  log   [14:54:03.260] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:03.260] [warning][admin][elasticsearch] No living connections
+  log   [14:54:03.302] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:03.303] [warning][admin][elasticsearch] No living connections
+  log   [14:54:03.303] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:54:04.262] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:04.265] [warning][admin][elasticsearch] No living connections
+  log   [14:54:04.449] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:04.450] [warning][admin][elasticsearch] No living connections
+  log   [14:54:05.269] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:05.269] [warning][admin][elasticsearch] No living connections
+  log   [14:54:06.275] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:06.275] [warning][admin][elasticsearch] No living connections
+  log   [14:54:06.306] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:06.306] [warning][admin][elasticsearch] No living connections
+  log   [14:54:06.307] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:54:06.953] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:06.953] [warning][admin][elasticsearch] No living connections
+  log   [14:54:07.281] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:07.281] [warning][admin][elasticsearch] No living connections
+  log   [14:54:08.287] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:08.288] [warning][admin][elasticsearch] No living connections
+  log   [14:54:09.294] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:09.295] [warning][admin][elasticsearch] No living connections
+  log   [14:54:09.310] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:09.311] [warning][admin][elasticsearch] No living connections
+  log   [14:54:09.311] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:54:09.454] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:09.455] [warning][admin][elasticsearch] No living connections
+  log   [14:54:10.300] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:10.300] [warning][admin][elasticsearch] No living connections
+  log   [14:54:11.306] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:11.306] [warning][admin][elasticsearch] No living connections
+  log   [14:54:11.959] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:11.960] [warning][admin][elasticsearch] No living connections
+  log   [14:54:12.313] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:12.313] [warning][admin][elasticsearch] No living connections
+  log   [14:54:12.314] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:12.314] [warning][admin][elasticsearch] No living connections
+  log   [14:54:12.314] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:54:13.318] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:13.318] [warning][admin][elasticsearch] No living connections
+  log   [14:54:14.325] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:14.325] [warning][admin][elasticsearch] No living connections
+  log   [14:54:14.462] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:14.462] [warning][admin][elasticsearch] No living connections
+  log   [14:54:15.315] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:15.315] [warning][admin][elasticsearch] No living connections
+  log   [14:54:15.315] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:54:15.328] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:15.328] [warning][admin][elasticsearch] No living connections
+  log   [14:54:16.335] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:16.336] [warning][admin][elasticsearch] No living connections
+  log   [14:54:16.967] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:16.968] [warning][admin][elasticsearch] No living connections
+  log   [14:54:17.343] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:17.343] [warning][admin][elasticsearch] No living connections
+  log   [14:54:18.318] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:18.318] [warning][admin][elasticsearch] No living connections
+  log   [14:54:18.318] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:54:18.351] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:18.352] [warning][admin][elasticsearch] No living connections
+  log   [14:54:19.357] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:19.357] [warning][admin][elasticsearch] No living connections
+  log   [14:54:19.471] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:19.472] [warning][admin][elasticsearch] No living connections
+  log   [14:54:20.364] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:20.364] [warning][admin][elasticsearch] No living connections
+  log   [14:54:21.322] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:21.322] [warning][admin][elasticsearch] No living connections
+  log   [14:54:21.323] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:54:21.368] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:21.368] [warning][admin][elasticsearch] No living connections
+  log   [14:54:21.971] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:21.972] [warning][admin][elasticsearch] No living connections
+  log   [14:54:22.373] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:22.373] [warning][admin][elasticsearch] No living connections
+  log   [14:54:23.378] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:23.380] [warning][admin][elasticsearch] No living connections
+  log   [14:54:24.323] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:24.324] [warning][admin][elasticsearch] No living connections
+  log   [14:54:24.324] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:54:24.385] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:24.385] [warning][admin][elasticsearch] No living connections
+  log   [14:54:24.475] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:24.475] [warning][admin][elasticsearch] No living connections
+  log   [14:54:25.223] [warning][elasticsearch][monitoring] Unable to revive connection: http://localhost:9200/
+  log   [14:54:25.223] [warning][elasticsearch][monitoring] No living connections
+  log   [14:54:25.226] [warning][licensing][plugins] License information could not be obtained from Elasticsearch due to Error: No Living connections error
+  log   [14:54:25.226] [warning][data][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:25.227] [warning][data][elasticsearch] No living connections
+  log   [14:54:25.227] [warning][licensing][plugins] License information could not be obtained from Elasticsearch due to Error: No Living connections error
+  log   [14:54:25.393] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:25.393] [warning][admin][elasticsearch] No living connections
+  log   [14:54:26.399] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:26.400] [warning][admin][elasticsearch] No living connections
+  log   [14:54:26.979] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:26.979] [warning][admin][elasticsearch] No living connections
+  log   [14:54:27.184] [warning][data][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:27.184] [warning][data][elasticsearch] No living connections
+  log   [14:54:27.186] [error][error][esqueue][queue-worker][reporting] kbxkc5wg0te2a7d8cceho94l - job querying failed: Error: No Living connections
+    at sendReqWithConnection (/Users/Smit/Documents/Dev/ELK/kibana-7.8.0-darwin-x86_64/node_modules/elasticsearch/src/lib/transport.js:266:15)
+    at next (/Users/Smit/Documents/Dev/ELK/kibana-7.8.0-darwin-x86_64/node_modules/elasticsearch/src/lib/connection_pool.js:243:7)
+    at process._tickCallback (internal/process/next_tick.js:61:11)
+  log   [14:54:27.328] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:27.328] [warning][admin][elasticsearch] No living connections
+  log   [14:54:27.329] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:54:27.405] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:27.405] [warning][admin][elasticsearch] No living connections
+  log   [14:54:28.412] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:28.412] [warning][admin][elasticsearch] No living connections
+  log   [14:54:29.416] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:29.416] [warning][admin][elasticsearch] No living connections
+  log   [14:54:29.482] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:29.482] [warning][admin][elasticsearch] No living connections
+  log   [14:54:30.331] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:30.331] [warning][admin][elasticsearch] No living connections
+  log   [14:54:30.332] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:54:30.422] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:30.422] [warning][admin][elasticsearch] No living connections
+  log   [14:54:31.430] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:31.430] [warning][admin][elasticsearch] No living connections
+  log   [14:54:31.988] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:31.988] [warning][admin][elasticsearch] No living connections
+  log   [14:54:32.437] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:32.437] [warning][admin][elasticsearch] No living connections
+  log   [14:54:33.332] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:33.332] [warning][admin][elasticsearch] No living connections
+  log   [14:54:33.332] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:54:33.443] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:33.443] [warning][admin][elasticsearch] No living connections
+  log   [14:54:34.448] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:34.449] [warning][admin][elasticsearch] No living connections
+  log   [14:54:34.492] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:34.492] [warning][admin][elasticsearch] No living connections
+  log   [14:54:35.454] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:35.454] [warning][admin][elasticsearch] No living connections
+  log   [14:54:36.337] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:36.337] [warning][admin][elasticsearch] No living connections
+  log   [14:54:36.338] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:54:36.461] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:36.462] [warning][admin][elasticsearch] No living connections
+  log   [14:54:36.996] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:36.996] [warning][admin][elasticsearch] No living connections
+  log   [14:54:37.468] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:37.468] [warning][admin][elasticsearch] No living connections
+  log   [14:54:38.475] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:38.475] [warning][admin][elasticsearch] No living connections
+  log   [14:54:39.340] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:39.341] [warning][admin][elasticsearch] No living connections
+  log   [14:54:39.341] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:54:39.480] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:39.480] [warning][admin][elasticsearch] No living connections
+  log   [14:54:39.499] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:39.500] [warning][admin][elasticsearch] No living connections
+  log   [14:54:40.484] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:40.485] [warning][admin][elasticsearch] No living connections
+  log   [14:54:41.493] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:41.494] [warning][admin][elasticsearch] No living connections
+  log   [14:54:42.004] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:42.004] [warning][admin][elasticsearch] No living connections
+  log   [14:54:42.342] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:42.342] [warning][admin][elasticsearch] No living connections
+  log   [14:54:42.343] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:54:42.500] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:42.501] [warning][admin][elasticsearch] No living connections
+  log   [14:54:43.505] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:43.505] [warning][admin][elasticsearch] No living connections
+  log   [14:54:44.508] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:44.509] [warning][admin][elasticsearch] No living connections
+  log   [14:54:44.509] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:44.510] [warning][admin][elasticsearch] No living connections
+  log   [14:54:45.342] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:45.342] [warning][admin][elasticsearch] No living connections
+  log   [14:54:45.345] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:54:45.515] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:45.515] [warning][admin][elasticsearch] No living connections
+  log   [14:54:46.522] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:46.522] [warning][admin][elasticsearch] No living connections
+  log   [14:54:47.011] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:47.011] [warning][admin][elasticsearch] No living connections
+  log   [14:54:47.525] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:47.525] [warning][admin][elasticsearch] No living connections
+  log   [14:54:48.344] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:48.345] [warning][admin][elasticsearch] No living connections
+  log   [14:54:48.345] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:54:48.531] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:48.532] [warning][admin][elasticsearch] No living connections
+  log   [14:54:49.514] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:49.515] [warning][admin][elasticsearch] No living connections
+  log   [14:54:49.536] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:49.536] [warning][admin][elasticsearch] No living connections
+  log   [14:54:50.544] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:50.544] [warning][admin][elasticsearch] No living connections
+  log   [14:54:51.348] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:51.349] [warning][admin][elasticsearch] No living connections
+  log   [14:54:51.349] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:54:51.551] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:51.551] [warning][admin][elasticsearch] No living connections
+  log   [14:54:52.018] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:52.018] [warning][admin][elasticsearch] No living connections
+  log   [14:54:52.557] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:52.558] [warning][admin][elasticsearch] No living connections
+  log   [14:54:53.565] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:53.565] [warning][admin][elasticsearch] No living connections
+  log   [14:54:54.351] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:54.352] [warning][admin][elasticsearch] No living connections
+  log   [14:54:54.352] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:54:54.523] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:54.523] [warning][admin][elasticsearch] No living connections
+  log   [14:54:54.570] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:54.570] [warning][admin][elasticsearch] No living connections
+  log   [14:54:55.226] [warning][data][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:55.226] [warning][data][elasticsearch] No living connections
+  log   [14:54:55.227] [warning][licensing][plugins] License information could not be obtained from Elasticsearch due to Error: No Living connections error
+  log   [14:54:55.228] [warning][elasticsearch][monitoring] Unable to revive connection: http://localhost:9200/
+  log   [14:54:55.228] [warning][elasticsearch][monitoring] No living connections
+  log   [14:54:55.228] [warning][licensing][plugins] License information could not be obtained from Elasticsearch due to Error: No Living connections error
+  log   [14:54:55.576] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:55.576] [warning][admin][elasticsearch] No living connections
+  log   [14:54:56.582] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:56.582] [warning][admin][elasticsearch] No living connections
+  log   [14:54:57.028] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:57.029] [warning][admin][elasticsearch] No living connections
+  log   [14:54:57.191] [warning][data][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:57.191] [warning][data][elasticsearch] No living connections
+  log   [14:54:57.192] [error][error][esqueue][queue-worker][reporting] kbxkc5wg0te2a7d8cceho94l - job querying failed: Error: No Living connections
+    at sendReqWithConnection (/Users/Smit/Documents/Dev/ELK/kibana-7.8.0-darwin-x86_64/node_modules/elasticsearch/src/lib/transport.js:266:15)
+    at next (/Users/Smit/Documents/Dev/ELK/kibana-7.8.0-darwin-x86_64/node_modules/elasticsearch/src/lib/connection_pool.js:243:7)
+    at process._tickCallback (internal/process/next_tick.js:61:11)
+  log   [14:54:57.352] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:57.352] [warning][admin][elasticsearch] No living connections
+  log   [14:54:57.352] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:54:57.590] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:57.591] [warning][admin][elasticsearch] No living connections
+  log   [14:54:58.594] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:58.595] [warning][admin][elasticsearch] No living connections
+  log   [14:54:59.529] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:59.530] [warning][admin][elasticsearch] No living connections
+  log   [14:54:59.599] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:54:59.600] [warning][admin][elasticsearch] No living connections
+  log   [14:55:00.354] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:00.354] [warning][admin][elasticsearch] No living connections
+  log   [14:55:00.354] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:55:00.604] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:00.604] [warning][admin][elasticsearch] No living connections
+  log   [14:55:01.610] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:01.611] [warning][admin][elasticsearch] No living connections
+  log   [14:55:02.033] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:02.034] [warning][admin][elasticsearch] No living connections
+  log   [14:55:02.617] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:02.617] [warning][admin][elasticsearch] No living connections
+  log   [14:55:03.361] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:03.361] [warning][admin][elasticsearch] No living connections
+  log   [14:55:03.361] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:55:03.622] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:03.623] [warning][admin][elasticsearch] No living connections
+  log   [14:55:04.538] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:04.538] [warning][admin][elasticsearch] No living connections
+  log   [14:55:04.627] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:04.627] [warning][admin][elasticsearch] No living connections
+  log   [14:55:05.634] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:05.634] [warning][admin][elasticsearch] No living connections
+  log   [14:55:06.363] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:06.364] [warning][admin][elasticsearch] No living connections
+  log   [14:55:06.364] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:55:06.641] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:06.641] [warning][admin][elasticsearch] No living connections
+  log   [14:55:07.044] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:07.044] [warning][admin][elasticsearch] No living connections
+  log   [14:55:07.649] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:07.649] [warning][admin][elasticsearch] No living connections
+  log   [14:55:08.656] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:08.657] [warning][admin][elasticsearch] No living connections
+  log   [14:55:09.368] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:09.368] [warning][admin][elasticsearch] No living connections
+  log   [14:55:09.368] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:55:09.546] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:09.546] [warning][admin][elasticsearch] No living connections
+  log   [14:55:09.660] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:09.661] [warning][admin][elasticsearch] No living connections
+  log   [14:55:10.666] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:10.667] [warning][admin][elasticsearch] No living connections
+  log   [14:55:11.672] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:11.673] [warning][admin][elasticsearch] No living connections
+  log   [14:55:12.051] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:12.051] [warning][admin][elasticsearch] No living connections
+  log   [14:55:12.372] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:12.372] [warning][admin][elasticsearch] No living connections
+  log   [14:55:12.372] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:55:12.679] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:12.680] [warning][admin][elasticsearch] No living connections
+  log   [14:55:13.687] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:13.687] [warning][admin][elasticsearch] No living connections
+  log   [14:55:14.551] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:14.552] [warning][admin][elasticsearch] No living connections
+  log   [14:55:14.693] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:14.693] [warning][admin][elasticsearch] No living connections
+  log   [14:55:15.375] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:15.375] [warning][admin][elasticsearch] No living connections
+  log   [14:55:15.376] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:55:15.700] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:15.700] [warning][admin][elasticsearch] No living connections
+  log   [14:55:16.708] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:16.708] [warning][admin][elasticsearch] No living connections
+  log   [14:55:17.053] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:17.054] [warning][admin][elasticsearch] No living connections
+  log   [14:55:17.715] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:17.716] [warning][admin][elasticsearch] No living connections
+  log   [14:55:18.379] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:18.379] [warning][admin][elasticsearch] No living connections
+  log   [14:55:18.380] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:55:18.718] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:18.719] [warning][admin][elasticsearch] No living connections
+  log   [14:55:19.555] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:19.556] [warning][admin][elasticsearch] No living connections
+  log   [14:55:19.726] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:19.726] [warning][admin][elasticsearch] No living connections
+  log   [14:55:20.732] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:20.732] [warning][admin][elasticsearch] No living connections
+  log   [14:55:21.382] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:21.382] [warning][admin][elasticsearch] No living connections
+  log   [14:55:21.382] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:55:21.736] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:21.737] [warning][admin][elasticsearch] No living connections
+  log   [14:55:22.063] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:22.063] [warning][admin][elasticsearch] No living connections
+  log   [14:55:22.744] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:22.745] [warning][admin][elasticsearch] No living connections
+  log   [14:55:23.748] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:23.748] [warning][admin][elasticsearch] No living connections
+  log   [14:55:24.385] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:24.385] [warning][admin][elasticsearch] No living connections
+  log   [14:55:24.386] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:55:24.564] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:24.564] [warning][admin][elasticsearch] No living connections
+  log   [14:55:24.756] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:24.756] [warning][admin][elasticsearch] No living connections
+  log   [14:55:25.228] [warning][data][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:25.228] [warning][data][elasticsearch] No living connections
+  log   [14:55:25.228] [warning][licensing][plugins] License information could not be obtained from Elasticsearch due to Error: No Living connections error
+  log   [14:55:25.229] [warning][elasticsearch][monitoring] Unable to revive connection: http://localhost:9200/
+  log   [14:55:25.229] [warning][elasticsearch][monitoring] No living connections
+  log   [14:55:25.229] [warning][licensing][plugins] License information could not be obtained from Elasticsearch due to Error: No Living connections error
+  log   [14:55:25.761] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:25.761] [warning][admin][elasticsearch] No living connections
+  log   [14:55:26.768] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:26.768] [warning][admin][elasticsearch] No living connections
+  log   [14:55:27.069] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:27.069] [warning][admin][elasticsearch] No living connections
+  log   [14:55:27.197] [warning][data][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:27.197] [warning][data][elasticsearch] No living connections
+  log   [14:55:27.198] [error][error][esqueue][queue-worker][reporting] kbxkc5wg0te2a7d8cceho94l - job querying failed: Error: No Living connections
+    at sendReqWithConnection (/Users/Smit/Documents/Dev/ELK/kibana-7.8.0-darwin-x86_64/node_modules/elasticsearch/src/lib/transport.js:266:15)
+    at next (/Users/Smit/Documents/Dev/ELK/kibana-7.8.0-darwin-x86_64/node_modules/elasticsearch/src/lib/connection_pool.js:243:7)
+    at process._tickCallback (internal/process/next_tick.js:61:11)
+  log   [14:55:27.389] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:27.389] [warning][admin][elasticsearch] No living connections
+  log   [14:55:27.389] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:55:27.774] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:27.774] [warning][admin][elasticsearch] No living connections
+  log   [14:55:28.779] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:28.780] [warning][admin][elasticsearch] No living connections
+  log   [14:55:29.571] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:29.572] [warning][admin][elasticsearch] No living connections
+  log   [14:55:29.786] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:29.787] [warning][admin][elasticsearch] No living connections
+  log   [14:55:30.395] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:30.395] [warning][admin][elasticsearch] No living connections
+  log   [14:55:30.396] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:55:30.793] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:30.794] [warning][admin][elasticsearch] No living connections
+  log   [14:55:31.799] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:31.800] [warning][admin][elasticsearch] No living connections
+  log   [14:55:32.076] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:32.076] [warning][admin][elasticsearch] No living connections
+  log   [14:55:32.807] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:32.807] [warning][admin][elasticsearch] No living connections
+  log   [14:55:33.396] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:33.397] [warning][admin][elasticsearch] No living connections
+  log   [14:55:33.397] [error][plugins][taskManager][taskManager] Failed to poll for work: Error: No Living connections
+  log   [14:55:33.813] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:33.813] [warning][admin][elasticsearch] No living connections
+  log   [14:55:34.580] [warning][admin][elasticsearch] Unable to revive connection: http://localhost:9200/
+  log   [14:55:34.580] [warning][admin][elasticsearch] No living connections
+^C  log   [14:55:34.774] [info][plugins-system] Stopping all plugins.
+  log   [14:55:34.775] [info][apm][plugins] Stopping plugin
+  log   [14:55:34.777] [info][plugins][siem] Stopping plugin
+  log   [14:55:34.777] [info][ml][plugins] Stopping plugin
+  log   [14:55:34.777] [info][plugins][uptime] Stopping plugin
+  log   [14:55:34.778] [info][logstash][plugins] Stopping plugin
+  log   [14:55:34.778] [info][monitoring][plugins] Stopping plugin
+  log   [14:55:34.778] [info][infra][plugins] Stopping plugin
+  log   [14:55:34.778] [info][alertingBuiltins][plugins] Stopping plugin
+  log   [14:55:34.779] [info][alerting][plugins] Stopping plugin
+  log   [14:55:34.779] [info][case][plugins] Stopping plugin
+  log   [14:55:34.779] [info][actions][plugins] Stopping plugin
+  log   [14:55:34.779] [info][plugins][spaces] Stopping plugin
+  log   [14:55:34.779] [info][plugins][savedObjectsManagement] Stopping plugin
+  log   [14:55:34.780] [info][dashboard][plugins] Stopping plugin
+  log   [14:55:34.780] [info][plugins][visualize] Stopping plugin
+  log   [14:55:34.780] [info][graph][plugins] Stopping plugin
+  log   [14:55:34.780] [info][lens][plugins] Stopping plugin
+  log   [14:55:34.780] [info][inputControlVis][plugins] Stopping plugin
+  log   [14:55:34.780] [info][plugins][visTypeMarkdown] Stopping plugin
+  log   [14:55:34.780] [info][plugins][visTypeMetric] Stopping plugin
+  log   [14:55:34.781] [info][plugins][visTypeTagcloud] Stopping plugin
+  log   [14:55:34.781] [info][plugins][visTypeTable] Stopping plugin
+  log   [14:55:34.781] [info][canvas][plugins] Stopping plugin
+  log   [14:55:34.781] [info][ingestPipelines][plugins] Stopping plugin
+  log   [14:55:34.781] [info][plugins][transform] Stopping plugin
+  log   [14:55:34.781] [info][plugins][snapshotRestore] Stopping plugin
+  log   [14:55:34.782] [info][plugins][security] Stopping plugin
+  log   [14:55:34.782] [info][features][plugins] Stopping plugin
+  log   [14:55:34.782] [info][plugins][visTypeTimelion] Stopping plugin
+  log   [14:55:34.782] [info][plugins][visTypeVega] Stopping plugin
+  log   [14:55:34.782] [info][plugins][visTypeVislib] Stopping plugin
+  log   [14:55:34.783] [info][plugins][rollup] Stopping plugin
+  log   [14:55:34.783] [info][plugins][visTypeTimeseries] Stopping plugin
+  log   [14:55:34.783] [info][plugins][visualizations] Stopping plugin
+  log   [14:55:34.783] [info][dataEnhanced][plugins] Stopping plugin
+  log   [14:55:34.783] [info][fileUpload][plugins] Stopping plugin
+  log   [14:55:34.783] [info][advancedSettings][plugins] Stopping plugin
+  log   [14:55:34.784] [info][plugins][watcher] Stopping plugin
+  log   [14:55:34.784] [info][indexLifecycleManagement][plugins] Stopping plugin
+  log   [14:55:34.784] [info][crossClusterReplication][plugins] Stopping plugin
+  log   [14:55:34.784] [info][plugins][remoteClusters] Stopping plugin
+  log   [14:55:34.784] [info][indexManagement][plugins] Stopping plugin
+  log   [14:55:34.784] [info][licenseManagement][plugins] Stopping plugin
+  log   [14:55:34.785] [info][plugins][reporting] Stopping plugin
+  log   [14:55:34.785] [info][plugins][upgradeAssistant] Stopping plugin
+  log   [14:55:34.786] [info][management][plugins] Stopping plugin
+  log   [14:55:34.787] [info][grokdebugger][plugins] Stopping plugin
+  log   [14:55:34.788] [info][painlessLab][plugins] Stopping plugin
+  log   [14:55:34.788] [info][plugins][searchprofiler] Stopping plugin
+  log   [14:55:34.788] [info][apm_oss][plugins] Stopping plugin
+  log   [14:55:34.788] [info][consoleExtensions][plugins] Stopping plugin
+  log   [14:55:34.788] [info][console][plugins] Stopping plugin
+  log   [14:55:34.788] [info][cloud][plugins] Stopping plugin
+  log   [14:55:34.789] [info][home][plugins] Stopping plugin
+  log   [14:55:34.789] [info][data][plugins] Stopping plugin
+  log   [14:55:34.789] [info][expressions][plugins] Stopping plugin
+  log   [14:55:34.789] [info][bfetch][plugins] Stopping plugin
+  log   [14:55:34.789] [info][discover][plugins] Stopping plugin
+  log   [14:55:34.789] [info][plugins][share] Stopping plugin
+  log   [14:55:34.790] [info][plugins][translations] Stopping plugin
+  log   [14:55:34.790] [info][kibanaLegacy][plugins] Stopping plugin
+  log   [14:55:34.790] [info][plugins][telemetryCollectionXpack] Stopping plugin
+  log   [14:55:34.790] [info][plugins][telemetry] Stopping plugin
+  log   [14:55:34.790] [info][plugins][telemetryCollectionManager] Stopping plugin
+  log   [14:55:34.790] [info][ossTelemetry][plugins] Stopping plugin
+  log   [14:55:34.790] [info][plugins][usageCollection] Stopping plugin
+  log   [14:55:34.791] [info][code][plugins] Stopping plugin
+  log   [14:55:34.791] [info][encryptedSavedObjects][plugins] Stopping plugin
+  log   [14:55:34.791] [info][eventLog][plugins] Stopping plugin
+  log   [14:55:34.792] [info][observability][plugins] Stopping plugin
+  log   [14:55:34.792] [info][licensing][plugins] Stopping plugin
+  log   [14:55:34.793] [info][plugins][taskManager] Stopping plugin
+(base) Smits-MacBook-Pro:kibana-7.8.0-darwin-x86_64 Smit$ bin/kibana
+

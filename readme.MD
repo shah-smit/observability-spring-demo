@@ -170,3 +170,9 @@ Issues:
 
 Kafka:
 - https://medium.com/@Ankitthakur/apache-kafka-installation-on-mac-using-homebrew-a367cdefd273
+
+
+Script to setup for Observability:
+```yaml
+
+```
