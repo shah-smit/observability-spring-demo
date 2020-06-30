@@ -15,3 +15,55 @@
 2020-06-30 12:24:39.753  INFO 63494 --- [http-nio-8080-exec-2] c.e.observability.aop.LoggingAdvice      : Method Invoked getDefaultGreeting in class class com.example.observability.service.GreetingService with args []
 2020-06-30 12:24:39.766  INFO 63494 --- [http-nio-8080-exec-2] c.e.observability.aop.LoggingAdvice      : Method getDefaultGreeting return Hello Default
 2020-06-30 12:25:44.968  INFO 63494 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-06-30 12:34:31.160  INFO 63741 --- [main] c.e.o.ObservabilityApplication           : Starting ObservabilityApplication on Smits-MacBook-Pro.local with PID 63741 (/Users/Smit/Downloads/chrome/observability/target/classes started by Smit in /Users/Smit/Downloads/chrome/observability)
+2020-06-30 12:34:31.163  INFO 63741 --- [main] c.e.o.ObservabilityApplication           : No active profile set, falling back to default profiles: default
+2020-06-30 12:34:32.192  INFO 63741 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-06-30 12:34:32.201  INFO 63741 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-06-30 12:34:32.202  INFO 63741 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.36]
+2020-06-30 12:34:32.265  INFO 63741 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-06-30 12:34:32.265  INFO 63741 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1048 ms
+2020-06-30 12:34:32.521  INFO 63741 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-06-30 12:34:32.693  INFO 63741 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-06-30 12:34:32.706  INFO 63741 --- [main] c.e.o.ObservabilityApplication           : Started ObservabilityApplication in 2.161 seconds (JVM running for 2.525)
+2020-06-30 12:37:10.732  INFO 63741 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-06-30 12:37:10.733  INFO 63741 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-06-30 12:37:10.741  INFO 63741 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
+2020-06-30 12:37:10.758  INFO 63741 --- [http-nio-8080-exec-1] c.e.o.controller.HomeController          : AUDIT_LOG >> customer id f39ad
+2020-06-30 12:37:10.763  INFO 63741 --- [http-nio-8080-exec-1] c.e.observability.aop.LoggingAdvice      : Method Invoked getDefaultGreeting in class class com.example.observability.service.GreetingService with args []
+2020-06-30 12:37:10.774  INFO 63741 --- [http-nio-8080-exec-1] c.e.observability.aop.LoggingAdvice      : Method getDefaultGreeting return Hello Default
+2020-06-30 12:37:10.840  INFO 63741 --- [http-nio-8080-exec-2] c.e.o.controller.HomeController          : AUDIT_LOG >> customer id db2d1
+2020-06-30 12:37:10.841  INFO 63741 --- [http-nio-8080-exec-2] c.e.observability.aop.LoggingAdvice      : Method Invoked getDefaultGreeting in class class com.example.observability.service.GreetingService with args []
+2020-06-30 12:37:10.841  INFO 63741 --- [http-nio-8080-exec-2] c.e.observability.aop.LoggingAdvice      : Method getDefaultGreeting return Hello Default
+2020-06-30 12:37:11.009  INFO 63741 --- [http-nio-8080-exec-3] c.e.o.controller.HomeController          : AUDIT_LOG >> customer id a8919
+2020-06-30 12:37:11.010  INFO 63741 --- [http-nio-8080-exec-3] c.e.observability.aop.LoggingAdvice      : Method Invoked getDefaultGreeting in class class com.example.observability.service.GreetingService with args []
+2020-06-30 12:37:11.010  INFO 63741 --- [http-nio-8080-exec-3] c.e.observability.aop.LoggingAdvice      : Method getDefaultGreeting return Hello Default
+2020-06-30 12:37:11.176  INFO 63741 --- [http-nio-8080-exec-4] c.e.o.controller.HomeController          : AUDIT_LOG >> customer id 8c088
+2020-06-30 12:37:11.177  INFO 63741 --- [http-nio-8080-exec-4] c.e.observability.aop.LoggingAdvice      : Method Invoked getDefaultGreeting in class class com.example.observability.service.GreetingService with args []
+2020-06-30 12:37:11.177  INFO 63741 --- [http-nio-8080-exec-4] c.e.observability.aop.LoggingAdvice      : Method getDefaultGreeting return Hello Default
+2020-06-30 12:37:11.332  INFO 63741 --- [http-nio-8080-exec-5] c.e.o.controller.HomeController          : AUDIT_LOG >> customer id ac5a9
+2020-06-30 12:37:11.333  INFO 63741 --- [http-nio-8080-exec-5] c.e.observability.aop.LoggingAdvice      : Method Invoked getDefaultGreeting in class class com.example.observability.service.GreetingService with args []
+2020-06-30 12:37:11.333  INFO 63741 --- [http-nio-8080-exec-5] c.e.observability.aop.LoggingAdvice      : Method getDefaultGreeting return Hello Default
+2020-06-30 12:37:11.796  INFO 63741 --- [http-nio-8080-exec-6] c.e.o.controller.HomeController          : AUDIT_LOG >> customer id 536ab
+2020-06-30 12:37:11.796  INFO 63741 --- [http-nio-8080-exec-6] c.e.observability.aop.LoggingAdvice      : Method Invoked getDefaultGreeting in class class com.example.observability.service.GreetingService with args []
+2020-06-30 12:37:11.796  INFO 63741 --- [http-nio-8080-exec-6] c.e.observability.aop.LoggingAdvice      : Method getDefaultGreeting return Hello Default
+2020-06-30 12:37:11.992  INFO 63741 --- [http-nio-8080-exec-7] c.e.o.controller.HomeController          : AUDIT_LOG >> customer id 3f123
+2020-06-30 12:37:11.993  INFO 63741 --- [http-nio-8080-exec-7] c.e.observability.aop.LoggingAdvice      : Method Invoked getDefaultGreeting in class class com.example.observability.service.GreetingService with args []
+2020-06-30 12:37:11.993  INFO 63741 --- [http-nio-8080-exec-7] c.e.observability.aop.LoggingAdvice      : Method getDefaultGreeting return Hello Default
+2020-06-30 12:37:12.278  INFO 63741 --- [http-nio-8080-exec-8] c.e.o.controller.HomeController          : AUDIT_LOG >> customer id 50890
+2020-06-30 12:37:12.278  INFO 63741 --- [http-nio-8080-exec-8] c.e.observability.aop.LoggingAdvice      : Method Invoked getDefaultGreeting in class class com.example.observability.service.GreetingService with args []
+2020-06-30 12:37:12.278  INFO 63741 --- [http-nio-8080-exec-8] c.e.observability.aop.LoggingAdvice      : Method getDefaultGreeting return Hello Default
+2020-06-30 12:37:12.509  INFO 63741 --- [http-nio-8080-exec-9] c.e.o.controller.HomeController          : AUDIT_LOG >> customer id 9b0a0
+2020-06-30 12:37:12.510  INFO 63741 --- [http-nio-8080-exec-9] c.e.observability.aop.LoggingAdvice      : Method Invoked getDefaultGreeting in class class com.example.observability.service.GreetingService with args []
+2020-06-30 12:37:12.510  INFO 63741 --- [http-nio-8080-exec-9] c.e.observability.aop.LoggingAdvice      : Method getDefaultGreeting return Hello Default
+2020-06-30 12:37:12.878  INFO 63741 --- [http-nio-8080-exec-10] c.e.o.controller.HomeController          : AUDIT_LOG >> customer id 8f525
+2020-06-30 12:37:12.878  INFO 63741 --- [http-nio-8080-exec-10] c.e.observability.aop.LoggingAdvice      : Method Invoked getDefaultGreeting in class class com.example.observability.service.GreetingService with args []
+2020-06-30 12:37:12.878  INFO 63741 --- [http-nio-8080-exec-10] c.e.observability.aop.LoggingAdvice      : Method getDefaultGreeting return Hello Default
+2020-06-30 12:37:13.293  INFO 63741 --- [http-nio-8080-exec-1] c.e.o.controller.HomeController          : AUDIT_LOG >> customer id ab8c4
+2020-06-30 12:37:13.293  INFO 63741 --- [http-nio-8080-exec-1] c.e.observability.aop.LoggingAdvice      : Method Invoked getDefaultGreeting in class class com.example.observability.service.GreetingService with args []
+2020-06-30 12:37:13.293  INFO 63741 --- [http-nio-8080-exec-1] c.e.observability.aop.LoggingAdvice      : Method getDefaultGreeting return Hello Default
+2020-06-30 12:37:13.461  INFO 63741 --- [http-nio-8080-exec-2] c.e.o.controller.HomeController          : AUDIT_LOG >> customer id 463b5
+2020-06-30 12:37:13.461  INFO 63741 --- [http-nio-8080-exec-2] c.e.observability.aop.LoggingAdvice      : Method Invoked getDefaultGreeting in class class com.example.observability.service.GreetingService with args []
+2020-06-30 12:37:13.461  INFO 63741 --- [http-nio-8080-exec-2] c.e.observability.aop.LoggingAdvice      : Method getDefaultGreeting return Hello Default
+2020-06-30 12:37:16.900  INFO 63741 --- [http-nio-8080-exec-3] c.e.o.controller.HomeController          : AUDIT_LOG >> customer id d6ebe
+2020-06-30 12:37:16.900  INFO 63741 --- [http-nio-8080-exec-3] c.e.observability.aop.LoggingAdvice      : Method Invoked getGreeting in class class com.example.observability.service.GreetingService with args [smit]
+2020-06-30 12:37:16.903  INFO 63741 --- [http-nio-8080-exec-3] c.e.observability.aop.LoggingAdvice      : Method getGreeting return Hello smit

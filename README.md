@@ -109,7 +109,7 @@ filebeat:
     - type: log
       paths:
         - /Users/Smit/Downloads/chrome/observability/spring_app_log_file.log
-      tags: ["observability"]
+      tags: ["observability", "audit"]
       include_lines: ['AUDIT_LOG']
 
     - type: log
@@ -172,9 +172,3 @@ Issues:
 
 Kafka:
 - https://medium.com/@Ankitthakur/apache-kafka-installation-on-mac-using-homebrew-a367cdefd273
-
-
-Script to setup for Observability:
-```yaml
-
-```
