@@ -174,23 +174,25 @@ Kafka:
 - https://medium.com/@Ankitthakur/apache-kafka-installation-on-mac-using-homebrew-a367cdefd273
 
 
-For Kafka:
+### Phase 3
+
+In this setup, I tried to use multiple-inputs for Logstash, where input can be from filebeats, or from Kafka on a particular topic.
 
 ```
 input {
   beats {
         port => "5044"
-        type => "log"
-        tags => ["beats"]
+	type => "log"
+	tags => ["beats"]
   }
   kafka {
-        bootstrap_servers => "localhost:9002"
-        topics => ["test"]
-        tags => ["kafka-stream"]
+	bootstrap_servers => "localhost:9002"
+	topics => ["test"]
+	tags => ["kafka-stream"]
   }
 }
 
-
+ 
 filter {
   #If log line contains tab character followed by 'at' then we will tag that entry as stacktrace
   if [message] =~ "\tat" {
@@ -199,5 +201,22 @@ filter {
       add_tag => ["stacktrace"]
     }
   }
-
+  mutate {
+    rename => ["host", "hostname"]
+    convert => {"hostname" => "string"} 
+  }
+ 
+}
+ 
+output {
+   
+  stdout {
+    codec => rubydebug
+  }
+ 
+  # Sending properly parsed log events to elasticsearch
+  elasticsearch {
+    hosts => ["localhost:9200"]
+  }
+}
 ```
