@@ -220,3 +220,25 @@ output {
   }
 }
 ```
+
+### Phase 4
+
+```yaml
+filebeat:
+  inputs:
+    - type: log
+      paths:
+        - /Users/Smit/Downloads/chrome/observability/spring_app_log_file.log
+      tags: ["observability", "audit"]
+      include_lines: ['AUDIT_LOG']
+
+    - type: log
+      paths:
+        - /Users/Smit/Documents/Dev/java/spring-boot-graphql-query-example/spring_app_log_file.log
+      tags: ["graphql"]
+      
+output:
+  kafka:
+    hosts: ["localhost:9002"]
+    topic: "test"
+```

@@ -67,3 +67,6 @@
 2020-06-30 12:37:16.900  INFO 63741 --- [http-nio-8080-exec-3] c.e.o.controller.HomeController          : AUDIT_LOG >> customer id d6ebe
 2020-06-30 12:37:16.900  INFO 63741 --- [http-nio-8080-exec-3] c.e.observability.aop.LoggingAdvice      : Method Invoked getGreeting in class class com.example.observability.service.GreetingService with args [smit]
 2020-06-30 12:37:16.903  INFO 63741 --- [http-nio-8080-exec-3] c.e.observability.aop.LoggingAdvice      : Method getGreeting return Hello smit
+2020-06-30 16:34:20.328  INFO 63741 --- [http-nio-8080-exec-7] c.e.o.controller.HomeController          : AUDIT_LOG >> customer id a8703
+2020-06-30 16:34:20.329  INFO 63741 --- [http-nio-8080-exec-7] c.e.observability.aop.LoggingAdvice      : Method Invoked getGreeting in class class com.example.observability.service.GreetingService with args [kafkaaaaa]
+2020-06-30 16:34:20.330  INFO 63741 --- [http-nio-8080-exec-7] c.e.observability.aop.LoggingAdvice      : Method getGreeting return Hello kafkaaaaa
