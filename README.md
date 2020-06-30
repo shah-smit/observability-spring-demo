@@ -172,3 +172,32 @@ Issues:
 
 Kafka:
 - https://medium.com/@Ankitthakur/apache-kafka-installation-on-mac-using-homebrew-a367cdefd273
+
+
+For Kafka:
+
+```
+input {
+  beats {
+        port => "5044"
+        type => "log"
+        tags => ["beats"]
+  }
+  kafka {
+        bootstrap_servers => "localhost:9002"
+        topics => ["test"]
+        tags => ["kafka-stream"]
+  }
+}
+
+
+filter {
+  #If log line contains tab character followed by 'at' then we will tag that entry as stacktrace
+  if [message] =~ "\tat" {
+    grok {
+      match => ["message", "^(\tat)"]
+      add_tag => ["stacktrace"]
+    }
+  }
+
+```
