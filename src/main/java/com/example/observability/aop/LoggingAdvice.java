@@ -14,7 +14,7 @@ import java.util.Arrays;
 @Component
 public class LoggingAdvice {
 
-    @Pointcut(value = "execution(* com.example.observability.*.*.*(..) )")
+    @Pointcut(value = "execution(* com.example.observability.service.*.*(..) )")
     public void generalLoggingPointCut(){
 
     }
