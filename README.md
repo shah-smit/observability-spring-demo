@@ -241,4 +241,5 @@ output:
   kafka:
     hosts: ["localhost:9002"]
     topic: "test"
+    type: json
 ```
