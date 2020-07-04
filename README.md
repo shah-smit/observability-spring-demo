@@ -176,6 +176,11 @@ Kafka:
 
 ### Phase 3
 
+Data flow as follows:
+```
+SpringBoot <> Filebeat <> Kafka <> LogStash <> Elastic Search <> Kibana
+```
+
 In this setup, I tried to use multiple-inputs for Logstash, where input can be from filebeats, or from Kafka on a particular topic.
 
 ```
@@ -221,7 +226,12 @@ output {
 }
 ```
 
-### Phase 4
+### Phase 3.1
+
+Data flow as follows:
+```
+SpringBoot <> Filebeat(include:filter) <> Kafka <> LogStash <> Elastic Search <> Kibana
+```
 
 ```yaml
 filebeat:
@@ -242,4 +252,53 @@ output:
     hosts: ["localhost:9002"]
     topic: "test"
     type: json
+```
+
+### Phase 4
+
+Same flow, but adding more functionality at the Logstash Config:
+
+```
+input {
+ file {
+    type => "java"
+    path => "/Users/Smit/Downloads/chrome/observability/spring_app_log_file.log"
+  }
+kafka {
+    bootstrap_servers => "localhost:9002"
+    topics => "test"
+    }
+}
+
+ 
+filter {
+  grok {
+    match => { 'message' => '\[%{TIMESTAMP_ISO8601:date}\],\[%{WORD:client},%{WORD},%{WORD:customerId},%{USERNAME},%{WORD:clientPrefix}\],%{WORD:logMode},%{WORD:subsystem},%{WORD:service},%{WORD},%{WORD}:::%{USERNAME}::%{WORD} %{GREEDYDATA:request}' }
+  }
+json{
+        source => "request"
+        target => "parsedJson"
+        remove_field=>["request"]
+    }
+mutate {
+    add_field => {
+      "accountNumber" => "%{[parsedJson][AccountNumber]}"
+      "amount" => "%{[parsedJson][Amount]}"
+      "nickName" => "%{[parsedJson][NickName]}"
+    }
+  }
+
+}
+ 
+output {
+   
+  stdout {
+    codec => rubydebug
+  }
+ 
+  # Sending properly parsed log events to elasticsearch
+  elasticsearch {
+    hosts => ["localhost:9200"]
+  }
+}
 ```
