@@ -1,0 +1,2 @@
+custom format: [2020-06-10T15:05:02,685],[WMB,MBI48901741U90,SMITSHAH,MB148901615-d064883782fc4165ba757a,MB],DEBUG,BANKFRAME,CASA,TXNHANDLER,STEPH:::com.bankframe.ei.txnhandler.dataformat.dbs.DataFormatTxn_10601::postProcessor
+custom format: [2020-06-10T15:05:02,685],[WMB,MBI48901741U90,TESTSHAH,MB148901615-d064883782fc4165ba757a,MB],DEBUG,BANKFRAME,CASA,TXNHANDLER,STEPH:::com.bankframe.ei.txnhandler.dataformat.dbs.DataFormatTxn_10601::postProcessor

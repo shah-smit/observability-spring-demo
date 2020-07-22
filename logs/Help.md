@@ -13,7 +13,7 @@ bin/elasticsearch
 
 #Kibana
 # Route to Kibana Search dir
-cd /Users/Smit/Documents/Dev/ELK/kibana-7.8.0-darwin-x86_64 
+cd /Users/Smit/Documents/Dev/ELK/kibana-7.8.0-darwin-x86_64
 bin/kibana
 
 #Kafka
@@ -166,6 +166,56 @@ output {
 ```
 
 More updates
+```
+input {
+ file {
+    type => "java"
+    path => "/Users/Smit/Downloads/chrome/observability/spring_app_log_file.log"
+  }
+kafka {
+    bootstrap_servers => "localhost:9002"
+    topics => "test"
+    }
+}
+
+ 
+filter {
+  grok {
+    match => { 'message' => '\[%{TIMESTAMP_ISO8601:date}\],\[%{WORD:client},%{WORD},%{WORD:customerId},%{USERNAME},%{WORD:clientPrefix}\],%{WORD:logMode},%{WORD:subsystem},%{WORD:service},%{WORD},%{WORD}:::%{USERNAME}::%{WORD} %{GREEDYDATA:request}' }
+  }
+json{
+        source => "request"
+        target => "parsedJson"
+        remove_field=>["request"]
+    }
+mutate {
+    add_field => {
+      "accountNumber" => "%{[parsedJson][AccountNumber]}"
+      "amount" => "%{[parsedJson][Amount]}"
+      "nickName" => "%{[parsedJson][NickName]}"
+    }
+  }
+
+}
+ 
+output {
+   
+  stdout {
+    codec => rubydebug
+  }
+ 
+  # Sending properly parsed log events to elasticsearch
+  elasticsearch {
+    hosts => ["localhost:9200"]
+  }
+}
+```
+
+Example for GROK:
+Text: [2020-06-10T15:05:02,685],[WMB,MBI48901741U90,NXGEN008,MB148901615-d064883782fc4165ba757a,MB],DEBUG,BANKFRAME,CASA,TXNHANDLER,STEPH:::com.bankframe.ei.txnhandler.dataformat.dbs.DataFormatTxn_10601::postProcessor {"AccountNumber":"123456", "Amount":"100.0", "NickName":"Smit"}
+
+GROK Pattern: \[%{TIMESTAMP_ISO8601:date}\],\[%{WORD:client},%{WORD},%{WORD:customerId},%{USERNAME},%{WORD:clientPrefix}\],%{WORD:logMode},%{WORD:subsystem},%{WORD:service},%{WORD},%{WORD}:::%{USERNAME}::%{WORD} %{GREEDYDATA:request}
+
 ```
 input {
  file {

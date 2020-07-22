@@ -302,3 +302,138 @@ output {
   }
 }
 ```
+
+### Phase 5
+
+This phase Logstash outputs to two different Elastic Search Index
+
+Data flow as follows:
+```
+SpringBoot <> Filebeat <> Kafka <> LogStash <> Elastic Search <> Elastic Search <> Kibana
+```
+
+Filebeat.yml:
+
+```yaml
+filebeat:
+  inputs:
+    - type: log
+      paths:
+        - /Users/Smit/Downloads/chrome/observability/spring_app_log_file.log
+      tags: ["observability", "audit"]
+     # include_lines: ['AUDIT_LOG']
+
+    - type: log
+      paths:
+        - /Users/Smit/Documents/Dev/java/spring-boot-graphql-query-example/spring_app_log_file.log
+      tags: ["graphql"]
+      
+output:
+  kafka:
+    hosts: ["localhost:9002"]
+    topic: "test"
+```
+
+Logstash.conf
+
+```
+input {
+ kafka {
+    bootstrap_servers => "localhost:9002"
+    topics => "test"
+    codec => json
+ }
+}
+
+filter {
+  json {
+    source=>"message"
+    target=>"message"
+  }
+
+  grok {
+    match => { 'message' => '\[%{TIMESTAMP_ISO8601:date}\],\[%{WORD:client},%{WORD},%{WORD:customerId},%{USERNAME},%{WORD:clientPrefix}\],%{WORD:logMode},%{WORD:subsystem},%{WORD:service},%{WORD},%{WORD}:::%{USERNAME}::%{WORD}' }
+  }
+
+  mutate {
+    rename => ["host", "hostname"]
+    convert => {"hostname" => "string"} 
+  }
+}
+ 
+output {
+   
+  stdout {
+    codec => rubydebug
+  }
+
+  if [logMode] =~ "DEBUG" {
+  # Sending properly parsed log events to elasticsearch
+    elasticsearch {
+        hosts => ["localhost:9200"]
+        index => "lunaindex-%{+YYYY.MM.dd}"
+    }  
+  }
+  else {
+    elasticsearch {
+        hosts => ["localhost:9200"]
+    }
+  }
+}
+```
+
+Note: for Datas, screenshots, please view `phase5` folder and its readme.
+
+Follow Up: What if I want to send all logs to default elastic search but certain keyworded log to a plain file:
+
+Here is `logstash.conf` file:
+```
+input {
+kafka {
+    bootstrap_servers => "localhost:9002"
+    topics => "test"
+    codec => json
+    }
+}
+
+ 
+filter {
+json {
+    source=>"message"
+    target=>"message"
+  }
+
+
+  grok {
+    match => { 'message' => '\[%{TIMESTAMP_ISO8601:date}\],\[%{WORD:client},%{WORD},%{WORD:customerId},%{USERNAME},%{WORD:clientPrefix}\],%{WORD:logMode},%{WORD:subsystem},%{WORD:service},%{WORD},%{WORD}:::%{USERNAME}::%{WORD}' }
+  }
+
+mutate {
+    rename => ["host", "hostname"]
+    convert => {"hostname" => "string"} 
+  }
+
+}
+ 
+output {
+   
+  stdout {
+    codec => rubydebug
+  }
+
+ if [logMode] =~ "DEBUG" {
+  # Sending properly parsed log events to elasticsearch
+  file {
+   path => "/Users/Smit/Downloads/chrome/observability/logstash_dump.txt"
+   codec => line { format => "custom format: %{message}"}
+  }
+ }
+  
+    elasticsearch {
+        hosts => ["localhost:9200"]
+    }
+
+
+}
+```
+
