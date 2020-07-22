@@ -104,3 +104,15 @@ Logstash Picking up:
 
 Note: First log will go to `lunaindex-*` indexed as it has a logMode of `DEBUG` where all other type of the logs will go to default `logstash-2020.06.27-000001`
 
+
+### Version 5.1
+
+Same as Version 5.0, but instead of sending to two different elastic index, i am sending a log with "DEBUG" keyword to `logstash_dump.txt` however still sending all the logs to default elastic search.
+
+As such the above still remains true, except now there will a new file created and here is sample data posted to the file:
+
+```
+custom format: [2020-06-10T15:05:02,685],[WMB,MBI48901741U90,SMITSHAH,MB148901615-d064883782fc4165ba757a,MB],DEBUG,BANKFRAME,CASA,TXNHANDLER,STEPH:::com.bankframe.ei.txnhandler.dataformat.dbs.DataFormatTxn_10601::postProcessor
+custom format: [2020-06-10T15:05:02,685],[WMB,MBI48901741U90,TESTSHAH,MB148901615-d064883782fc4165ba757a,MB],DEBUG,BANKFRAME,CASA,TXNHANDLER,STEPH:::com.bankframe.ei.txnhandler.dataformat.dbs.DataFormatTxn_10601::postProcessor
+ ```
+
