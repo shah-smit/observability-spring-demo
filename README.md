@@ -4,12 +4,12 @@ The whole setup is on MacOS v10.15.5 (19F101)
 
 ### Table of Content
 
-- Phase 1 `SpringBoot <> LogStash <> Elastic Search <> Kibana`
-- Phase 2 `SpringBoot <> Filebeat <> LogStash <> Elastic Search <> Kibana`
-- Phase 3 `SpringBoot <> Filebeat / Kafka <> LogStash <> Elastic Search <> Kibana`
-- Phase 4 `Enchanged Phase 3`
-- Phase 5 `SpringBoot <> Filebeat / Kafka <> LogStash <> Elastic Search #1 / Elastic Search #2  <> Kibana`
-- Phase 6 `Extracting fields from log line using Substring`
+- [Phase 1](#Phase-1) `SpringBoot <> LogStash <> Elastic Search <> Kibana`
+- [Phase 2](#Phase-2) `SpringBoot <> Filebeat <> LogStash <> Elastic Search <> Kibana`
+- [Phase 3](#Phase-3) `SpringBoot <> Filebeat / Kafka <> LogStash <> Elastic Search <> Kibana`
+- [Phase 4](#Phase-4) `Enchanged Phase 3`
+- [Phase 5](#Phase-5) `SpringBoot <> Filebeat / Kafka <> LogStash <> Elastic Search #1 / Elastic Search #2  <> Kibana`
+- [Phase 6](#Phase-6) `Extracting fields from log line using Substring`
 
 
 ### Phase 1
