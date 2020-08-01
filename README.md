@@ -2,6 +2,16 @@
 
 The whole setup is on MacOS v10.15.5 (19F101)
 
+### Table of Content
+
+- Phase 1 `SpringBoot <> LogStash <> Elastic Search <> Kibana`
+- Phase 2 `SpringBoot <> Filebeat <> LogStash <> Elastic Search <> Kibana`
+- Phase 3 `SpringBoot <> Filebeat / Kafka <> LogStash <> Elastic Search <> Kibana`
+- Phase 4 `Enchanged Phase 3`
+- Phase 5 `SpringBoot <> Filebeat / Kafka <> LogStash <> Elastic Search #1 / Elastic Search #2  <> Kibana`
+- Phase 6 `Extracting fields from log line using Substring`
+
+
 ### Phase 1
 
 Data flow as follows:
@@ -434,6 +444,74 @@ output {
     }
 
 
+}
+```
+
+### Phase 6
+
+In this phase, I tried to play with a log that requires sub-string, for example, I am given the below log line:
+
+```
+01999918000170702135929%WS%00000000000070030819078820913135929050000080RRN0002W900500000000C0000000000000500024464063100100 03081907882 300 R00
+```
+
+I need to extract the log base on a length, for example the first 11 characters are `ID` and next 5 characters are `date`
+
+Use `ruby` filter in the logstash to perform substring
+
+```
+filter {
+    ruby {
+        code => "
+             event.set('ID', event.get('message')[0..11])
+             event.set('date', event.get('message')[12..17])
+        "
+    }
+}
+```
+
+The full logstash may look like:
+
+```
+input {
+
+  kafka {
+    bootstrap_servers => "localhost:9002"
+    topics => "test"
+    codec => json
+  }
+}
+
+ 
+filter {
+
+  json {
+    source=>"message"
+    target=>"message"
+  }
+
+  ruby {
+        code => "
+             event.set('ID', event.get('message')[0..11])
+             event.set('date', event.get('message')[12..17])
+        "
+  }
+
+mutate {
+    rename => ["host", "hostname"]
+    convert => {"hostname" => "string"} 
+  }
+}
+ 
+output {
+   
+  stdout {
+    codec => rubydebug
+  }
+  
+  elasticsearch {
+        hosts => ["localhost:9200"]
+  }
 }
 ```
 
