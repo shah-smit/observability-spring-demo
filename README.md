@@ -10,6 +10,7 @@ The whole setup is on MacOS v10.15.5 (19F101)
 - [Phase 4](#Phase-4) `Enchanged Phase 3`
 - [Phase 5](#Phase-5) `SpringBoot <> Filebeat / Kafka <> LogStash <> Elastic Search #1 / Elastic Search #2  <> Kibana`
 - [Phase 6](#Phase-6) `Extracting fields from log line using Substring`
+- [Phase 7](#Phase-7) `Writing custom Ruby Script`
 
 
 ### Phase 1
@@ -514,4 +515,124 @@ output {
   }
 }
 ```
+
+
+### Phase 7
+
+In this phase, I tried to play with a log that requires further appending of empty strings at the end. Current implemention is done via Ruby script.
+
+`wb_log_formatter.rb` file
+```ruby
+def register(params)
+    @customer_cin = params["customer_cin"]
+    @customer_suffix = params["customer_suffix"]
+    @format_identifier = params["format_identifier"]
+end
+
+def filter(event)
+    if event.get('message').include?("GET Greeting")
+
+        if !event.get('dob').nil?
+            # dob == 9 Characters
+            dob = event.get("dob")
+            puts dob
+            dob = dob + "         "
+            dob = dob[0, 9]
+            event.set("dob_updated",dob)
+        end
+    end
+    return [event]
+end
+```
+
+`logstash.conf` file
+```
+input {
+kafka {
+    bootstrap_servers => "localhost:9002"
+    topics => "test"
+    codec => json
+    }
+}
+ 
+filter {
+  grok {
+    match => { 'message' => '%{DATESTAMP:mytimestamp}%{SPACE}%{WORD}%{SPACE}%{NUMBER} --- %{NOTSPACE} %{NOTSPACE}%{SPACE}:%{SPACE}%{WORD}%{SPACE}%{WORD}%{SPACE}%{GREEDYDATA:request}' }
+  }
+  json{
+        source => "request"
+        target => "parsedJson"
+        remove_field=>["request"]
+  }
+  
+  if [parsedJson][customerId] {
+    mutate {
+      add_field => {
+        "customerId" => "%{[parsedJson][customerId]}"
+      }
+    }
+  }
+
+  if [parsedJson][dob] {
+    mutate {
+      add_field => {
+        "dob" => "%{[parsedJson][dob]}"
+      }
+    }
+  }
+  ruby {
+        code => "
+             event.set('customer_cin', event.get('customerId')[0..8])
+             event.set('customer_suffix', event.get('customerId')[8..11])
+        "
+    }
+  mutate {
+    rename => ["host", "hostname"]
+    convert => {"hostname" => "string"} 
+  }
+
+  ruby {
+      path => "/usr/local/etc/logstash/wb_log_formatter.rb"
+      script_params => { 
+        "format_identifier" => "test GET Greeting test" 
+      }
+  }
+}
+ 
+output {
+   
+  stdout {
+    codec => rubydebug
+  }
+
+  if [dob_updated] and [dob_updated] != "" {
+    if [customer_cin] and [customer_cin] != "" {
+      if [customer_suffix] and [customer_suffix] != "" {
+        # Sending properly parsed log events to elasticsearch
+          elasticsearch {
+            hosts => ["localhost:9200"]
+            index => "business_logstash_02-%{+YYYY.MM.dd}"
+          } 
+
+          file {
+            path => "/Users/Smit/Documents/Dev/java/observability-spring-demo/logstash_dump.txt"
+            codec => line { format => "%{dob_updated}%{customer_cin}%{customer_suffix}"}
+          }
+      }
+    } 
+  }
+  
+    elasticsearch {
+        hosts => ["localhost:9200"]
+    }
+}
+```
+
+##### References:
+- https://github.com/jsvd/logstash-filter-ruby-scripts/blob/master/scripts/string_size.rb
+- https://stackoverflow.com/questions/63479922/logstash-add-extra-space-on-a-particular-field-based-on-the-config
+- https://discuss.elastic.co/t/logstash-add-extra-space-on-a-particular-field-based-on-the-config/245520
+- https://youtu.be/a4gOU4wxUAs  #Its private video, please call @shah-smit
+
+
 
