@@ -260,3 +260,231 @@ output {
   }
 }
 ```
+
+
+Substring logstash
+```
+input {
+kafka {
+    bootstrap_servers => "localhost:9002"
+    topics => "test"
+    codec => json
+    }
+}
+
+ 
+filter {
+json {
+    source=>"message"
+    target=>"message"
+  }
+
+
+  ruby {
+        code => "
+             event.set('ID', event.get('message')[0..11])
+             event.set('date', event.get('message')[12..17])
+        "
+    }
+
+mutate {
+    rename => ["host", "hostname"]
+    convert => {"hostname" => "string"} 
+  }
+
+}
+ 
+output {
+   
+  stdout {
+    codec => rubydebug
+  }
+
+ if [message] =~ "R00" {
+  # Sending properly parsed log events to elasticsearch
+  file {
+   path => "/Users/Smit/Downloads/chrome/observability/logstash_dump.txt"
+   codec => line { format => "custom format: %{message}"}
+  }
+ }
+  
+    elasticsearch {
+        hosts => ["localhost:9200"]
+    }
+
+
+}
+```
+
+
+```
+input {
+kafka {
+    bootstrap_servers => "localhost:9002"
+    topics => "test"
+    codec => json
+    }
+}
+
+ 
+filter {
+  grok {
+    match => { 'message' => '%{DATESTAMP:mytimestamp}%{SPACE}%{WORD}%{SPACE}%{NUMBER} --- %{NOTSPACE} %{NOTSPACE}%{SPACE}:%{SPACE}%{WORD}%{SPACE}%{WORD}%{SPACE}%{GREEDYDATA:request}' }
+  }
+json{
+        source => "request"
+        target => "parsedJson"
+        remove_field=>["request"]
+    }
+mutate {
+    add_field => {
+      "customerId" => "%{[parsedJson][customerId]}"
+      "dob" => "%{[parsedJson][dob]}"
+    }
+  }
+ruby {
+        code => "
+             event.set('customer_cin', event.get('customerId')[0..8])
+             event.set('customer_suffix', event.get('customerId')[8..11])
+        "
+    }
+mutate {
+    rename => ["host", "hostname"]
+    convert => {"hostname" => "string"} 
+  }
+
+ruby {
+        path => "/usr/local/etc/logstash/wb_log_formatter.rb"
+        script_params => { 
+          "format_identifier" => "test GET Greeting test" 
+        }
+      }
+}
+ 
+output {
+   
+  stdout {
+    codec => rubydebug
+  }
+
+
+  file {
+   path => "/Users/Smit/Documents/Dev/java/observability-spring-demo/logstash_dump.txt"
+   codec => line { format => "%{dob_updated}%{customer_cin}%{customer_suffix}"}
+  }
+
+  if [dob_updated] != "" {
+  # Sending properly parsed log events to elasticsearch
+    if [customer_cin] != "" {
+      if [customer_suffix] != "" {
+          elasticsearch {
+            hosts => ["localhost:9200"]
+            index => "business_logstash-%{+YYYY.MM.dd}"
+          } 
+      }
+    } 
+  }
+
+  
+    elasticsearch {
+        hosts => ["localhost:9200"]
+    }
+
+
+}
+```
+
+
+19082020 -- 15:45:30
+
+Works for this log: 
+```
+2020-08-19 11:38:31.651  INFO 54221 --- [nio-8080-exec-1] c.e.o.controller.HomeController          : GET Greeting { "customerId": "S1234567C", "dob":"23022010"}
+```
+
+Config:
+```
+input {
+kafka {
+    bootstrap_servers => "localhost:9002"
+    topics => "test"
+    codec => json
+    }
+}
+
+ 
+filter {
+  grok {
+    match => { 'message' => '%{DATESTAMP:mytimestamp}%{SPACE}%{WORD}%{SPACE}%{NUMBER} --- %{NOTSPACE} %{NOTSPACE}%{SPACE}:%{SPACE}%{WORD}%{SPACE}%{WORD}%{SPACE}%{GREEDYDATA:request}' }
+  }
+  json{
+        source => "request"
+        target => "parsedJson"
+        remove_field=>["request"]
+  }
+  
+  if [parsedJson][customerId] {
+    mutate {
+      add_field => {
+        "customerId" => "%{[parsedJson][customerId]}"
+      }
+    }
+  }
+
+  if [parsedJson][dob] {
+    mutate {
+      add_field => {
+        "dob" => "%{[parsedJson][dob]}"
+      }
+    }
+  }
+  ruby {
+        code => "
+             event.set('customer_cin', event.get('customerId')[0..8])
+             event.set('customer_suffix', event.get('customerId')[8..11])
+        "
+    }
+  mutate {
+    rename => ["host", "hostname"]
+    convert => {"hostname" => "string"} 
+  }
+
+  ruby {
+      path => "/usr/local/etc/logstash/wb_log_formatter.rb"
+      script_params => { 
+        "format_identifier" => "test GET Greeting test" 
+      }
+  }
+}
+ 
+output {
+   
+  stdout {
+    codec => rubydebug
+  }
+
+  if [dob_updated] and [dob_updated] != "" {
+    if [customer_cin] and [customer_cin] != "" {
+      if [customer_suffix] and [customer_suffix] != "" {
+        # Sending properly parsed log events to elasticsearch
+          elasticsearch {
+            hosts => ["localhost:9200"]
+            index => "business_logstash_02-%{+YYYY.MM.dd}"
+          } 
+
+          file {
+            path => "/Users/Smit/Documents/Dev/java/observability-spring-demo/logstash_dump.txt"
+            codec => line { format => "%{dob_updated}%{customer_cin}%{customer_suffix}"}
+          }
+      }
+    } 
+  }
+
+  
+    elasticsearch {
+        hosts => ["localhost:9200"]
+    }
+
+
+}
+```
