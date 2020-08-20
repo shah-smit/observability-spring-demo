@@ -634,5 +634,179 @@ output {
 - https://discuss.elastic.co/t/logstash-add-extra-space-on-a-particular-field-based-on-the-config/245520
 - https://youtu.be/a4gOU4wxUAs  #Its private video, please call @shah-smit
 
+#### Phase 8
+
+This phase I have tried to Logstash Agregate Filter
+
+`logstash.conf` file:
+```
+input {
+kafka {
+    bootstrap_servers => "localhost:9002"
+    topics => "test"
+    codec => json
+    }
+}
+ 
+filter {
+
+  if [message] =~ 'Request headers' {
+    #Extract customerId and traceId
+    grok {
+      match => { 'message' => '%{UUID:id} %{NOTSPACE} %{TIMESTAMP_ISO8601:mytimestamp} %{WORD:type} %{DATA} %{DATA }%{WORD:logtype} %{NUMBER:logid} --- \[%{USERNAME}\] %{WORD:test}%{SPACE}:%{SPACE}%{DATA:datatype}: host=\[%{HOSTNAME:host}\], user-agent=\[%{WORD:useragent}\], accept=\[%{DATA:accept}\], actionid=\[%{DATA:actionid}\], authorization=\[%{DATA:authorization}\], channelid=\[%{DATA:channelid}\], client_id=\[%{DATA:client_id}\], content-type=\[%{DATA:contentType}\], customerid=\[%{DATA:customerid}\], locale=\[%{DATA:locale}\], timeout=\[%{DATA:timeout}\], x-b3-spanid=\[%{DATA:spanid}\], x-b3-traceid=\[%{DATA:traceid}\], x-cf-applicationid=\[%{DATA}\], x-cf-instanceid=\[%{DATA}\], x-cf-instanceindex=\[%{DATA}\], x-correlationid=\[%{DATA}\], x-version=\[%{DATA:version}\], x-forwarded-proto=\[%{DATA}\], x-request-start=\[%{DATA}\], x-vcap-request-id=\[%{DATA}\]' }
+    }
+    
+    if [customerid] {
+      aggregate {
+       task_id => "%{traceid}"
+       code => "
+            map['customerid'] = event.get('customerid')
+            map['channelid'] = event.get('channelid')"
+       map_action => "create"
+     }
+    }
+  }
+
+  if [message] =~ 'ChassisGrafanaLogger' {
+    #Extract endpoint and traceId
+    grok {
+      match => { 'message' => '%{UUID:id} %{NOTSPACE} %{TIMESTAMP_ISO8601:mytimestamp} %{WORD} %{DATA} %{DATA} %{WORD} %{NUMBER:logid} --- \[%{USERNAME}\] %{DATA:test}: :%{GREEDYDATA:request}' }
+    }
+
+    json{
+        source => "request"
+        target => "parsedJson"
+        remove_field=>["request"]
+    }
+
+    mutate {
+      add_field => {
+        "traceid" => "%{[parsedJson][traceId]}"
+        "endpoint" => "%{[parsedJson][endpoint]}"
+        "request_type" => "%{[parsedJson][api_type]}"
+      }
+    }
+    
+    if [request_type] =~ "request" {
+      aggregate {
+       task_id => "%{traceid}"
+       code => "map['endpoint'] = event.get('endpoint')"
+       map_action => "update"
+     }
+    }
+
+    if [request_type] =~ "response" {
+      if [endpoint] =~ "INTERBANK" {
+       mutate {
+        add_field => {
+          "host_call" => "10 415"
+        }
+       }
+     }
+     if [endpoint] =~ "INTRABANK" {
+        mutate {
+        add_field => {
+          "host_call" => "10 601"
+        }
+       }
+     }
+    
+
+      aggregate {
+          task_id => "%{traceid}"
+          code => "
+                event.set('found_all_logs', 'true') 
+                event.set('customerid', map['customerid'])
+                event.set('endpoint', map['endpoint'])
+                event.set('channelid', map['channelid'])
+                event.set('host_call',  event.get('host_call'))"
+          map_action => "update"
+          end_of_task => true
+          timeout => 120
+      }
+    }
+  }
+
+  mutate {
+      rename => ["host", "hostname"]
+      convert => {"hostname" => "string"} 
+  }
+
+  if [host_call] and [host_call] != "" {
+    ruby {
+        path => "/usr/local/etc/logstash/wb_log_formatter.rb"
+        script_params => { 
+          "random_identifier" => "test GET Greeting test" 
+        }
+    }
+
+    ruby {
+        code => "
+             event.set('customer_suffix', event.get('customerid')[0..2])
+             event.set('customer_cin', event.get('customerid')[2..11])
+        "
+    }
+  }
+  
+}
+ 
+output {
+   
+  stdout {
+    codec => rubydebug
+  }
+
+  if [host_call] and [host_call] != "" {
+        # Sending properly parsed log events to elasticsearch
+    elasticsearch {
+      hosts => ["localhost:9200"]
+      index => "business_logstash_03-%{+YYYY.MM.dd}"
+    } 
+
+    file {
+      path => "/Users/Smit/Documents/Dev/java/observability-spring-demo/logstash_dump.txt"
+      codec => line { format => "%{customerid}%{channelid}%{customer_cin}%{customer_suffix}"}
+    }
+  }
+
+  
+    elasticsearch {
+        hosts => ["localhost:9200"]
+    }
+}
+```
+`wb_log_formatter.rb` file:
+```
+def register(params)
+    @customer_cin = params["customer_cin"]
+    @customer_suffix = params["customer_suffix"]
+    @format_identifier = params["format_identifier"]
+end
+
+def filter(event)
+    if event.get('endpoint').include?("INTERBANK")
+            event.set("WBLOG_PARTA","10")
+            event.set("WBLOG_PARTB","415")
+    end
+
+    # channelid == 4 Characters
+    channelid = event.get("channelid")
+    puts channelid
+    channelid_updated = channelid + "         "
+    channelid_updated = channelid_updated[0, 3]
+    event.set("channelid",channelid_updated)
+
+    host_call = event.get("host_call")
+    puts host_call
+    host_call = host_call.gsub(' ', '')
+    event.set("host_call",host_call)
+    return [event]
+end
+```
+
+In order to see the magic, ensure to put the logs in the particular format:
+
+
+
 
 
