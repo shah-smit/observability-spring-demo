@@ -11,6 +11,7 @@ The whole setup is on MacOS v10.15.5 (19F101)
 - [Phase 5](#Phase-5) `SpringBoot <> Filebeat / Kafka <> LogStash <> Elastic Search #1 / Elastic Search #2  <> Kibana`
 - [Phase 6](#Phase-6) `Extracting fields from log line using Substring`
 - [Phase 7](#Phase-7) `Writing custom Ruby Script`
+- [Phase 8](#Phase-8) `Implemented Logstash Aggregate Filter`
 
 
 ### Phase 1
