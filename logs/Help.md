@@ -1,4 +1,5 @@
 #Filebeat setting filebeat
+cd Documents/Dev/ELK/filebeat-7.8.0-darwin-x86_64
 sudo chown root filebeat.yml
 sudo ./filebeat -e
 
@@ -28,6 +29,8 @@ kafka-console-producer --broker-list localhost:9002 --topic test
 
 
 kafka-console-consumer --bootstrap-server localhost:9002 --topic test --from-beginning
+
+https://gist.github.com/tomysmile/ba6c0ba4488ea51e6423d492985a7953
 
 
 input {
@@ -486,5 +489,342 @@ output {
     }
 
 
+}
+```
+
+
+23rd August
+
+```
+input {
+kafka {
+    bootstrap_servers => "localhost:9002"
+    topics => "test"
+    codec => json
+    }
+}
+ 
+filter {
+
+  if [message] =~ 'Request headers' {
+    #Extract customerId and traceId
+    grok {
+      match => { 'message' => 
+                        [ 
+                          '%{UUID:id} %{NOTSPACE} %{TIMESTAMP_ISO8601:mytimestamp} %{WORD:type} %{DATA} %{DATA} %{WORD:logtype} %{NUMBER:logid} --- \[%{USERNAME}\] %{WORD:test}%{SPACE}:%{SPACE}%{DATA:datatype}: host=\[%{HOSTNAME:host}\], user-agent=\[%{WORD:useragent}\], accept=\[%{DATA:accept}\], actionid=\[%{DATA:actionid}\], authorization=\[%{DATA:authorization}\], channelid=\[%{DATA:channelid}\], client_id=\[%{DATA:client_id}\], content-type=\[%{DATA:contentType}\], customerid=\[%{DATA:customerid}\], locale=\[%{DATA:locale}\], timeout=\[%{DATA:timeout}\], x-b3-spanid=\[%{DATA:spanid}\], x-b3-traceid=\[%{DATA:traceid}\], x-cf-applicationid=\[%{DATA}\], x-cf-instanceid=\[%{DATA}\], x-cf-instanceindex=\[%{DATA}\], x-correlationid=\[%{DATA}\], x-version=\[%{DATA:version}\], x-forwarded-proto=\[%{DATA}\], x-request-start=\[%{DATA}\], x-vcap-request-id=\[%{DATA}\]',
+                          '%{UUID:id} %{NOTSPACE} %{TIMESTAMP_ISO8601:mytimestamp} %{WORD:logtype} %{WORD:test}\|%{DATA:apptimestamp}\|%{WORD:country}\|%{DATA:appname}\|%{DATA:functionId}\|%{DATA:serviceId}\|%{DATA:customerid}\|%{DATA:traceid}\|' 
+                        ]
+      }
+    }
+    
+    if [customerid] {
+      aggregate {
+       task_id => "%{traceid}"
+       code => "
+            map['customerid'] = event.get('customerid')
+            map['channelid'] = event.get('channelid')"
+       map_action => "create"
+     }
+    }
+  }
+
+
+  if [message] =~ 'Request body' { 
+  
+    grok {
+      match => {
+        "message" => "%{UUID:id} %{NOTSPACE} %{TIMESTAMP_ISO8601:mytimestamp} %{WORD:logtype} %{WORD:test}\|%{DATA:apptimestamp}\|%{WORD:country}\|%{DATA:appname}\|%{DATA:functionId}\|%{DATA:serviceId}\|%{DATA:customerid}\|%{DATA:traceid}\|%{GREEDYDATA}\|Request body: %{GREEDYDATA:requestbody}"
+      }
+    }
+
+    json{
+        source => "requestbody"
+        target => "parsedJson"
+        remove_field=>["requestbody"]
+    }
+
+    if [appname] =~ 'rates-service' {
+
+        mutate {
+            add_field => {
+              "transactionAmount" => "%{[parsedJson][transactionAmount][value]}"
+              "millimeters" => "100.0"
+            }
+        }
+
+        memcached {
+          hosts => ["localhost:11211"]
+          namespace => "convert_mm"
+          set => {
+            "[inches]" => "%{millimeters}"
+          }
+          id => "memcached-set"
+        }
+    
+    } else {
+
+      mutate {
+        add_field => {
+          "rfqPricingId" => "%{[parsedJson][rfqPricingId]}"
+        }
+      }
+
+      aggregate {
+          task_id => "deal_booking_%{customerid}"
+          code => "
+            puts 'test'
+            event.set('it_works', 'phase execute remittance req body')
+            event.set('transactionAmount', map['transactionAmount'])"
+          map_action => "update"
+          end_of_task => true
+          timeout => 120
+      }
+
+      aggregate {
+          task_id => "%{traceid}"
+          code => "
+            event.set('it_works', 'phase execute remittance another req body')
+            map['rfqPricingId'] = event.get('rfqPricingId')
+            map['transactionAmount'] = event.get('transactionAmount')"
+          map_action => "update"
+      }
+
+      memcached {
+        hosts => ["localhost:11211"]
+        namespace => "convert_mm"
+        get => {
+          "%{millimeters}" => "[inches]"
+        }
+        add_tag => ["from_cache"]
+        id => "memcached-get"
+      }
+    
+    }
+  
+  }
+
+  #ChassisGrafanaLogger
+  if [message] =~ 'error classification' {
+    #Extract endpoint and traceId
+
+    if [message] =~ 'ChassisGrafanaLogger' {
+      grok {
+        match => { 'message' => '%{UUID:id} %{NOTSPACE} %{TIMESTAMP_ISO8601:mytimestamp} %{WORD} %{DATA} %{DATA} %{WORD} %{NUMBER:logid} --- \[%{USERNAME}\] %{DATA:test}: :%{GREEDYDATA:request}' }
+      }
+    } else {
+      grok {
+        match => { 'message' => '%{UUID:id} %{NOTSPACE} %{TIMESTAMP_ISO8601:mytimestamp} %{WORD:test} :%{GREEDYDATA:request}' }
+      }
+    }
+
+    json{
+        source => "request"
+        target => "parsedJson"
+        remove_field=>["request"]
+    }
+
+    mutate {
+      add_field => {
+        "traceid" => "%{[parsedJson][traceId]}"
+        "endpoint" => "%{[parsedJson][endpoint]}"
+        "request_type" => "%{[parsedJson][api_type]}"
+      }
+    }
+
+    aggregate {
+       task_id => "%{traceid}"
+       code => "event.set('customerid', map['customerid'])"
+       map_action => "update"
+     }
+    
+    if [request_type] =~ "request" {
+      aggregate {
+       task_id => "%{traceid}"
+       code => "map['endpoint'] = event.get('endpoint')"
+       map_action => "update"
+     }
+    }
+
+    if [request_type] =~ "response" {
+      if [endpoint] =~ "INTERBANK" {
+       mutate {
+        add_field => {
+          "host_call" => "10 415"
+        }
+       }
+     }
+     if [endpoint] =~ "INTRABANK" {
+        mutate {
+        add_field => {
+          "host_call" => "10 601"
+        }
+       }
+     }
+
+     if [endpoint] =~ 'remit-transfer' {
+        mutate {
+          add_field => {
+            "host_call" => "10 111"
+          }
+        }
+     
+     }
+    
+
+      aggregate {
+          task_id => "%{traceid}"
+          code => "
+                event.set('found_all_logs', 'true') 
+                event.set('customerid', map['customerid'])
+                event.set('endpoint', map['endpoint'])
+                event.set('channelid', map['channelid'])
+                event.set('rfqPricingId', map['rfqPricingId'])
+                event.set('transactionAmount', map['transactionAmount'])
+                event.set('host_call',  event.get('host_call'))"
+          map_action => "update"
+          end_of_task => true
+          timeout => 120
+      }
+    }
+  }
+
+  mutate {
+      rename => ["host", "hostname"]
+      convert => {"hostname" => "string"} 
+  }
+
+  if [host_call] and [host_call] != "" {
+    ruby {
+        code => "
+             event.set('customer_suffix', event.get('customerid')[0..2])
+             event.set('customer_cin', event.get('customerid')[2..11])
+        "
+    }
+    
+    ruby {
+        path => "/usr/local/etc/logstash/wb_log_formatter.rb"
+        script_params => { 
+          "random_identifier" => "test GET Greeting test" 
+        }
+    }
+  }
+  
+}
+ 
+output {
+   
+  stdout {
+    codec => rubydebug
+  }
+
+  if [host_call] and [host_call] != "" {
+        # Sending properly parsed log events to elasticsearch
+    elasticsearch {
+      hosts => ["localhost:9200"]
+      index => "business_logstash_06-%{+YYYY.MM.dd}"
+    } 
+
+    file {
+      path => "/Users/Smit/Documents/Dev/java/observability-spring-demo/logstash_dump.txt"
+      codec => line { format => "%{wbsp}"}
+    }
+  }
+
+  
+    elasticsearch {
+        hosts => ["localhost:9200"]
+    }
+}
+```
+
+
+MemCached Example
+```
+input {
+  kafka {
+    bootstrap_servers => "localhost:9002"
+    topics => "test"
+    codec => json
+  }
+}
+
+filter {
+
+  if [message] =~ 'Request headers' {
+
+    mutate {
+      add_field => {
+        "phase" => "RequestHeaders"
+      }
+    }
+
+
+    memcached {
+      hosts => ["localhost"]
+      namespace => "convert_mm"
+      #"field1"           => "memcached-key-1"
+      set => {
+        "phase" => "foo"
+      }
+      id => "memcached-set"
+    }
+  }
+
+
+  if [message] =~ 'Request body' {
+
+    mutate {
+      add_field => {
+        "phase" => "RequestBody"
+      }
+    }
+
+    memcached {
+      hosts => ["localhost"]
+      namespace => "convert_mm"
+      #"memcached-key-1" => "field1"
+      get => {
+        "foo" => "phase"
+      }
+      add_tag => ["from_cache"]
+      id => "memcached-get"
+    }
+  }
+
+  mutate {
+    rename => ["host", "hostname"]
+    convert => {
+      "hostname" => "string"
+    }
+  }
+
+}
+
+output {
+
+  stdout {
+    codec => rubydebug
+  }
+
+  if [host_call] and [host_call] != "" {
+    # Sending properly parsed log events to elasticsearch
+    elasticsearch {
+      hosts => ["localhost:9200"]
+      index => "business_logstash_06-%{+YYYY.MM.dd}"
+    }
+
+    file {
+      path => "/Users/Smit/Documents/Dev/java/observability-spring-demo/logstash_dump.txt"
+      codec => line {
+        format => "%{wbsp}"
+      }
+    }
+  }
+
+
+  elasticsearch {
+    hosts => ["localhost:9200"]
+    index => "logstash_06-%{+YYYY.MM.dd}"
+  }
 }
 ```

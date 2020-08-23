@@ -1,1 +1,0 @@
-2020-08-20 21:29:58.174  INFO 61307 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
