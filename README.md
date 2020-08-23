@@ -1125,7 +1125,7 @@ filter {
       }
 
       memcached {
-        hosts => ["localhost:11211"]
+        hosts => ["localhost"]
         namespace => "convert_mm"
         #"field1"           => "memcached-key-1"
         set => {
@@ -1144,7 +1144,7 @@ filter {
       }
 
       memcached {
-        hosts => ["localhost:11211"]
+        hosts => ["localhost"]
         namespace => "convert_mm"
         #"memcached-key-1" => "field1"
         get => {
@@ -1219,24 +1219,15 @@ filter {
         mutate {
           add_field => {
             "host_call" => "10 415"
+            "formatted_service_name" => "Interbank Query"
           }
-        }
-
-        memcached {
-          hosts => ["localhost:11211"]
-          namespace => "customer_journey_%{customerid}"
-          #"memcached-key-1" => "field1"
-          get => {
-            "host_call" => "transactionAmount"
-          }
-          add_tag => ["from_cache"]
-          id => "memcached-get"
         }
       }
       if [endpoint] =~ "INTRABANK" {
         mutate {
           add_field => {
             "host_call" => "10 601"
+            "formatted_service_name" => "Intrabank Query"
           }
         }
       }
@@ -1245,6 +1236,7 @@ filter {
         mutate {
           add_field => {
             "host_call" => "10 111"
+            "formatted_service_name" => "Remit Transfer"
           }
         }
       }
@@ -1253,6 +1245,7 @@ filter {
         mutate {
           add_field => {
             "host_call" => "10 555"
+            "formatted_service_name" => "FX Rates Query"
           }
         }
       }
@@ -1267,6 +1260,7 @@ filter {
                 event.set('channelid', map['channelid'])
                 event.set('rfqPricingId', map['rfqPricingId'])
                 event.set('transactionAmount', map['transactionAmount'])
+                event.set('formatted_service_name', map['formatted_service_name'])
         event.set('host_call',  event.get('host_call'))"
         map_action => "update"
         end_of_task => true
@@ -1310,7 +1304,7 @@ output {
     # Sending properly parsed log events to elasticsearch
     elasticsearch {
       hosts => ["localhost:9200"]
-      index => "business_logstash_07-%{+YYYY.MM.dd}"
+      index => "business_logstash_08-%{+YYYY.MM.dd}"
     }
 
     file {
