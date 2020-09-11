@@ -33,3 +33,5 @@ build/
 *.log
 *.gz
 *.tmp
+
+log_generator/target

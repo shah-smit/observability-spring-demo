@@ -1322,7 +1322,125 @@ output {
 }
 ```
 
+#### Phase 10
+
+Enaching Ruby skills by adding Names
+
+Ruby `HostCall10415.rb`:
+
+```
+class HostCall10415  
+	def initialize(event)  
+		# Instance variables  
+		@customer_id = event.get('customerid')
+		transaction = event.get('transaction')
+		@transaction_amount = transaction['amount']
+		@transaction_currency = transaction['currency']
+	end  
+	def build_wbsp  
+		customerId = @customer_id.ljust(15,' ')
+		puts customerId
+		transactionAmount = build_amount()
+		puts transactionAmount
+		return customerId + transactionAmount
+	end 
+	def build_amount
+		string_amount = @transaction_amount
+		puts string_amount
+
+		splitted_amount = string_amount.split('.')
+		puts splitted_amount
+		puts splitted_amount[0]
+		puts splitted_amount[1]
+
+		prefixed_amount = splitted_amount[0]
+		puts prefixed_amount
+
+		suffixed_amount = splitted_amount[1]
+		puts suffixed_amount
+
+		decimal_count = suffixed_amount.length
+		puts decimal_count
+		
+		string_build = string_amount.to_s.gsub('.','').ljust(15, '0') + decimal_count.to_s
+		return string_build
+	end
+end
+```
+
+Ruby `main.rb`
+
+```
+require_relative 'HostCall10415'
+
+def register(params)
+    @drop_percentage = params["percentage"]
+end
+
+def filter(event)
+    puts @drop_percentage
+    header = event.get('header')
+    puts header
+    word = header['endpoint'].to_s
+    
+    if word.include? "pay"
+        puts "in pay"
+        m = HostCall10415.new(event)
+        wbsp_format = m.build_wbsp
+        puts wbsp_format
+        event.set('wbsp_format', wbsp_format)
+    end
+    return [event]
+end
+```
+
+logstash.conf
+
+```
+# Sample Logstash configuration for creating a simple
+# Beats -> Logstash -> Elasticsearch pipeline.
+
+input {
+  kafka {
+    bootstrap_servers => "localhost:9002"
+    topics => "api-avro"
+  }
+}
+
+ filter {
+      json {
+        source => "message"
+      }
+	ruby {
+        # Cancel 90% of events
+        path => "/usr/local/etc/logstash/main.rb"
+        script_params => { "percentage" => 0.9 }
+      }
+    }
 
 
+output {
 
+stdout {
+    codec => rubydebug
+  }
+
+
+  elasticsearch {
+    hosts => ["http://localhost:9200"]
+  }
+}
+```
+
+Example input:
+
+```
+{"customerid":"smit","last_name":"shah","age":10,"height":10,"weight":100,"automated_email":false, "header": { "endpoint":"/pay"}, "transaction": { "amount":"100.50", "currency" : "SGD"}}
+```
+
+Example Output:
+
+```
+smit           1005000000000002
+```
 
