@@ -1339,29 +1339,33 @@ class HostCall10415
 	end  
 	def build_wbsp  
 		customerId = @customer_id.ljust(15,' ')
+		#smit
 		puts customerId
 		transactionAmount = build_amount()
+		#1005000000000002
 		puts transactionAmount
+		#smit           1005000000000002
 		return customerId + transactionAmount
 	end 
 	def build_amount
 		string_amount = @transaction_amount
-		puts string_amount
+		puts string_amount #100.50
 
 		splitted_amount = string_amount.split('.')
-		puts splitted_amount
-		puts splitted_amount[0]
-		puts splitted_amount[1]
+		puts splitted_amount 
+		puts splitted_amount[0] #100
+		puts splitted_amount[1] #50
 
 		prefixed_amount = splitted_amount[0]
-		puts prefixed_amount
+		puts prefixed_amount #100
 
 		suffixed_amount = splitted_amount[1]
-		puts suffixed_amount
+		puts suffixed_amount #50
 
 		decimal_count = suffixed_amount.length
-		puts decimal_count
+		puts decimal_count #2
 		
+		#1005000000000002
 		string_build = string_amount.to_s.gsub('.','').ljust(15, '0') + decimal_count.to_s
 		return string_build
 	end
