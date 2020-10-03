@@ -1439,7 +1439,7 @@ stdout {
 Example input:
 
 ```
-{"customerid":"smit","last_name":"shah","age":10,"height":10,"weight":100,"automated_email":false, "header": { "endpoint":"/pay"}, "transaction": { "amount":"100.50", "currency" : "SGD"}}
+{"customerid":"smit","last_name":"shah","age":10,"height":10,"weight":100,"automated_email":false, "header": { "endpoint":"/pay"}, "transaction": { "amount":"100.50", "currency" : "SGD", "account": "12345"}}
 ```
 
 Example Output:
