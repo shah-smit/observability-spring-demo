@@ -6,6 +6,7 @@ sudo ./filebeat -e
 #Logstash
 brew services start elastic/tap/logstash-full
 logstash -f /usr/local/etc/logstash/logstash.conf
+vi /usr/local/etc/logstash/logstash.conf
 
 #Elastic Search
 # Route to Elastic Search dir
@@ -23,12 +24,12 @@ brew install kafka
 zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties
 
 kafka-server-start /usr/local/etc/kafka/server.properties
-kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
+kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test-avro
 
-kafka-console-producer --broker-list localhost:9002 --topic test
+kafka-console-producer --broker-list localhost:9002 --topic api-avro
 
 
-kafka-console-consumer --bootstrap-server localhost:9002 --topic test --from-beginning
+kafka-console-consumer --bootstrap-server localhost:9002 --topic api-avro --from-beginning
 
 https://gist.github.com/tomysmile/ba6c0ba4488ea51e6423d492985a7953
 
