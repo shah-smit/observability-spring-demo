@@ -35,3 +35,5 @@ build/
 *.tmp
 
 log_generator/target
+
+venv
