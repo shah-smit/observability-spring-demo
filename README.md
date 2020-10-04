@@ -1474,3 +1474,7 @@ def hello_world():
 
 init_seconds()
 ```
+
+```
+nohup python cron_runner.py &
+```
