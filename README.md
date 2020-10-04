@@ -1448,3 +1448,29 @@ Example Output:
 smit           1005000000000002
 ```
 
+
+cron
+```
+from datetime import datetime, timedelta
+from threading import Timer
+from elasticsearchdemo import generate_report
+
+
+def init_seconds():
+    global secs
+    x = datetime.today()
+    y = x.replace(day=x.day, hour=14, minute=2, second=0, microsecond=0)  # + timedelta(days=1)
+    delta_t = y - x
+    secs = delta_t.total_seconds()
+    t = Timer(secs, hello_world())
+    t.start()
+
+
+def hello_world():
+    print("Generating report")
+    generate_report()
+    # ...
+
+
+init_seconds()
+```
