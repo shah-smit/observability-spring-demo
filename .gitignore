@@ -37,3 +37,4 @@ build/
 log_generator/target
 
 venv
+python/__pycache__/*
