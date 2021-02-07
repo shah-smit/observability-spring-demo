@@ -1478,3 +1478,8 @@ init_seconds()
 ```
 nohup python cron_runner.py &
 ```
+
+
+Ref
+
+https://medium.com/better-programming/getting-started-with-elasticsearch-in-java-spring-boot-d981c32b60b
